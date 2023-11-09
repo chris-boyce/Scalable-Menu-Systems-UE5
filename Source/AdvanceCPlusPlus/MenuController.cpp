@@ -4,54 +4,37 @@
 #include "MenuController.h"
 #include "Blueprint/UserWidget.h"
 #include "Kismet/GameplayStatics.h"
-#include "UObject/ConstructorHelpers.h"
+#include "Containers/Queue.h"
 
 TQueue<UUserWidget*> UIQueue;
 
 AMenuController::AMenuController()
 {
-	static ConstructorHelpers::FClassFinder<UUserWidget> MainMenuWidget(TEXT("/Game/Chris/UI/MainMenu"));
-	if(!ensure (MainMenuWidget.Class != nullptr)) return ;
-
-	static ConstructorHelpers::FClassFinder<UUserWidget> LeagueMenuWidget(TEXT("/Game/Chris/UI/LeaugueMenu"));
-	if(!ensure (LeagueMenuWidget.Class != nullptr)) return ;
-
-	MainMenuWidgetClass = MainMenuWidget.Class;
-	LeagueMenuWidgetClass = LeagueMenuWidget.Class;
 	PrimaryActorTick.bCanEverTick = true;
 }
 
 void AMenuController::ShowWidget()
 {
-	
 	try
 	{
-		if (!MainMenuWidgetClass || !LeagueMenuWidgetClass)
+		if (!MainMenuWidgetClass)
 		{
-			throw FString("MainMenuWidgetClass is not set.");
+			UE_LOG(LogTemp, Error, TEXT("We Are broken"));
 		}
-		Example();
-		/*
-		UUserWidget* MainMenu = CreateWidget<UUserWidget>(this, MainMenuWidgetClass);
-		if (!MainMenu)
-		{
-			throw FString("Failed to create MainMenu widget.");
-		}
-		MainMenu->AddToViewport();
+		
 		APlayerController* PlayerController = UGameplayStatics::GetPlayerController(GetWorld(), 0);
-
 		FInputModeUIOnly InputModeData;
-		InputModeData.SetWidgetToFocus(MainMenu->TakeWidget());
 		InputModeData.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
 
 		PlayerController->SetInputMode(InputModeData);
 		PlayerController->bShowMouseCursor = true;
-		*/
+		
 	}
 	catch (const FString& ErrorMessage)
 	{
 		UE_LOG(LogTemp, Error, TEXT("%s"), *ErrorMessage);
 	}
+	
 	
 }
 
@@ -72,22 +55,8 @@ void AMenuController::AddToUIQueue(UUserWidget* WidgetToAdd)
 {
 	UIQueue.Enqueue(WidgetToAdd);
 	ShowTopUI();
+	
 }
-
-void AMenuController::Example()
-{
-	// Create and add UI elements to the queue
-	UUserWidget* UIWidget1 = CreateWidget<UUserWidget>(this, MainMenuWidgetClass);
-	UUserWidget* UIWidget2 = CreateWidget<UUserWidget>(GetWorld(), LeagueMenuWidgetClass);
-
-	AddToUIQueue(UIWidget1);
-	AddToUIQueue(UIWidget2);
-
-	// Remove the top UI element after some time (simulating a pop)
-	FTimerHandle TimerHandle;
-	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &AMenuController::RemoveTopUI, 3.0f, false);
-}
-
 void AMenuController::RemoveTopUI()
 {
 	UUserWidget* TopWidget;
@@ -99,12 +68,33 @@ void AMenuController::RemoveTopUI()
 
 	// Show the new top UI widget
 	ShowTopUI();
+	
+}
+
+void AMenuController::MainMenuEnable()
+{
+	AddToUIQueue(UIWidget1);
+	RemoveTopUI();
+}
+
+void AMenuController::LeagueMenuEnable()
+{
+	AddToUIQueue(UIWidget2);
+	RemoveTopUI();
+}
+void AMenuController::BattlePassMenuEnable()
+{
+	AddToUIQueue(UIWidget3);
+	RemoveTopUI();
 }
 
 void AMenuController::BeginPlay()
 {
 	Super::BeginPlay();
-	UE_LOG(LogTemp, Warning, TEXT("We Have Found Class %s"), *MainMenuWidgetClass->GetName());
 	ShowWidget();
+	UIWidget1 = CreateWidget<UUserWidget>(this, MainMenuWidgetClass);
+	UIWidget2 = CreateWidget<UUserWidget>(GetWorld(), LeagueMenuWidgetClass);
+	UIWidget3 = CreateWidget<UUserWidget>(GetWorld(), BattlePassMenuWidgetClass);
+	AddToUIQueue(UIWidget1);
 }
 

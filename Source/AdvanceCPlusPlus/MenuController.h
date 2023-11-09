@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
-#include "Containers/Queue.h"
 #include "MenuController.generated.h"
 
 /**
@@ -26,18 +25,39 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void AddToUIQueue(UUserWidget* WidgetToAdd);
-
+	
 	UFUNCTION(BlueprintCallable)
-	void Example();
+	void MainMenuEnable();
 
 	UFUNCTION(BlueprintCallable)
 	void RemoveTopUI();
+
+	UFUNCTION(BlueprintCallable)
+	void LeagueMenuEnable();
+	
+	UFUNCTION(BlueprintCallable)
+	void BattlePassMenuEnable();
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UUserWidget> MainMenuWidgetClass;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UUserWidget> LeagueMenuWidgetClass;
+	
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UUserWidget> BattlePassMenuWidgetClass;
+
 	
 	
 protected:
 	virtual void BeginPlay() override;
+	
+	TQueue<UUserWidget*> UIQueue;
 private:
-	TSubclassOf<class UUserWidget> MainMenuWidgetClass;
-	TSubclassOf<class UUserWidget> LeagueMenuWidgetClass;
+	UUserWidget* UIWidget1;
+	UUserWidget* UIWidget2;
+	UUserWidget* UIWidget3;
+	
+	
 	
 };
