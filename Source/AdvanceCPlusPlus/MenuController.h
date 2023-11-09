@@ -6,9 +6,6 @@
 #include "GameFramework/PlayerController.h"
 #include "MenuController.generated.h"
 
-/**
- * 
- */
 UCLASS()
 class ADVANCECPLUSPLUS_API AMenuController : public APlayerController
 {
@@ -16,6 +13,9 @@ class ADVANCECPLUSPLUS_API AMenuController : public APlayerController
 public:
 	AMenuController();
 
+	/**
+	 * Ques Functions to chnage and Remove Layers
+	 */
 	
 	UFUNCTION(BlueprintCallable)
 	void ShowWidget();
@@ -27,16 +27,24 @@ public:
 	void AddToUIQueue(UUserWidget* WidgetToAdd);
 	
 	UFUNCTION(BlueprintCallable)
-	void MainMenuEnable();
-
-	UFUNCTION(BlueprintCallable)
 	void RemoveTopUI();
+
+	/**
+	 * Function Needed to Enable the Layer <- Assigned to run on button Click
+	 */
+	
+	UFUNCTION(BlueprintCallable)
+	void MainMenuEnable();
 
 	UFUNCTION(BlueprintCallable)
 	void LeagueMenuEnable();
 	
 	UFUNCTION(BlueprintCallable)
 	void BattlePassMenuEnable();
+
+	/**
+	 * Class Input Needed <- Must be done in BP_MenuController Inspector
+	 */
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UUserWidget> MainMenuWidgetClass;
@@ -54,6 +62,9 @@ protected:
 	
 	TQueue<UUserWidget*> UIQueue;
 private:
+	/**
+	 * Widget Layers for Each Layer <- Assigned In Begin Play 
+	 */
 	UUserWidget* UIWidget1;
 	UUserWidget* UIWidget2;
 	UUserWidget* UIWidget3;
