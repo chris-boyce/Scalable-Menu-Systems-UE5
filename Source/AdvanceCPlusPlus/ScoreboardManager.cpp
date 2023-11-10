@@ -19,6 +19,32 @@ void AScoreboardManager::BeginPlay()
 	// Example usage of BinaryTree
 	UBinaryTreeClass* MyBinaryTree = NewObject<UBinaryTreeClass>(this);
 
+	if (ScoreBoardDataTable)
+	{
+		TArray<FName> RowNames = ScoreBoardDataTable->GetRowNames();
+		for (FName RowName : RowNames)
+		{
+			FScoreboardData* DataRow = ScoreBoardDataTable->FindRow<FScoreboardData>(RowName, "");
+			if (DataRow)
+			{
+				// Access data from DataRow
+				FString Name = DataRow->Name;
+				int32 Score = DataRow->Score;
+
+				FScoreboardData NewScoreData;
+				NewScoreData.Name = Name;
+				NewScoreData.Score = Score;
+
+				ScoreboardArray.Add(NewScoreData);
+            
+				// Use the data as needed
+				UE_LOG(LogTemp, Warning, TEXT("Row %s - Name: %s, Score: %d"), *RowName.ToString(), *Name, Score);
+			}
+		}
+	}
+
+
+	/*
 	FScoreboardData P1;
 	P1.Name = "Chris";
 	P1.Score = 100;
@@ -26,7 +52,7 @@ void AScoreboardManager::BeginPlay()
 	FScoreboardData P2;
 	P2.Name = "Bob";
 	P2.Score = 200;
-	
+	s
 	MyBinaryTree->Insert(P1);
 	MyBinaryTree->Insert(P2);
 	
@@ -40,6 +66,7 @@ void AScoreboardManager::BeginPlay()
 		UE_LOG(LogTemp, Warning, TEXT("%d"), Value.Score);
 		
 	}
+	*/
 	
 	
 		
