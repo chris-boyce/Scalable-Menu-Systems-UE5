@@ -22,8 +22,6 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "ScoreboardDataTable")
 	UDataTable* ScoreBoardDataTable;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TArray<FScoreboardData> ScoreboardArray;
 
 protected:
 	virtual void BeginPlay() override;

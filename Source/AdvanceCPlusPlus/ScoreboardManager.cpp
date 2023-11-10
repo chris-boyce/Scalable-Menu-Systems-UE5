@@ -16,8 +16,7 @@ void AScoreboardManager::BeginPlay()
 {
 	Super::BeginPlay();
 	UE_LOG(LogTemp, Warning, TEXT("Has Run Begin Play"));
-	// Example usage of BinaryTree
-	UBinaryTreeClass* MyBinaryTree = NewObject<UBinaryTreeClass>(this);
+	UBinaryTreeClass* ScoreBoardBinaryTree = NewObject<UBinaryTreeClass>(this);
 
 	if (ScoreBoardDataTable)
 	{
@@ -27,32 +26,17 @@ void AScoreboardManager::BeginPlay()
 			FScoreboardData* DataRow = ScoreBoardDataTable->FindRow<FScoreboardData>(RowName, "");
 			if (DataRow)
 			{
-				// Access data from DataRow
-				FString Name = DataRow->Name;
-				int32 Score = DataRow->Score;
-
-				FScoreboardData NewScoreData;
-				NewScoreData.Name = Name;
-				NewScoreData.Score = Score;
-
-				ScoreboardArray.Add(NewScoreData);
-            
-				// Use the data as needed
-				UE_LOG(LogTemp, Warning, TEXT("Row %s - Name: %s, Score: %d"), *RowName.ToString(), *Name, Score);
+				FScoreboardData ScoreboardTemp;
+				ScoreboardTemp.Name = DataRow->Name;
+				ScoreboardTemp.Score = DataRow->Score;
+				ScoreBoardBinaryTree->Insert(ScoreboardTemp);
 			}
 		}
 	}
-
-	for (const FScoreboardData& ScoreboardData : ScoreboardArray)
-	{
-		FScoreboardData ScoreboardTemp;
-		ScoreboardTemp.Name = ScoreboardData.Name;
-		ScoreboardTemp.Score = ScoreboardData.Score;
-		MyBinaryTree->Insert(ScoreboardTemp);
-	}
 	
+	//Display the Binary Tree in the Console Inorder
 	TArray<FScoreboardData> InOrderResult;
-	MyBinaryTree->InOrderTraversal(MyBinaryTree->Root, InOrderResult);
+	ScoreBoardBinaryTree->InOrderTraversal(ScoreBoardBinaryTree->Root, InOrderResult);
 
 	for (FScoreboardData Value : InOrderResult)
 	{
