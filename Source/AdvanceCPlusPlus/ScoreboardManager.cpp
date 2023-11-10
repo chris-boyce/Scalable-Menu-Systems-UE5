@@ -21,6 +21,20 @@ void AScoreboardManager::CreateTemplate()
 		TArray<FScoreboardData> InOrderResult;
 		ScoreBoardBinaryTree->InOrderTraversal(ScoreBoardBinaryTree->Root, InOrderResult);
 
+		for (int32 i = 0; i < InOrderResult.Num(); ++i)
+		{
+			FScoreboardData Value = InOrderResult[i];
+
+			// Create an instance of your custom widget
+			ULeagueTemplate* NewItem = CreateWidget<ULeagueTemplate>(GetWorld(), TemplateWidget);
+			NewItem->ChangeText(Value.Name, Value.Score, i);
+
+			// Add the new item to the scroll box
+			MyScrollBox->AddChild(NewItem);
+		}
+		
+		/*
+
 		for (FScoreboardData Value : InOrderResult)
 		{
 			// Create an instance of your custom widget
@@ -29,6 +43,7 @@ void AScoreboardManager::CreateTemplate()
 			// Add the new item to the scroll box
 			MyScrollBox->AddChild(NewItem);
 		}
+		*/
 	}
 }
 

@@ -17,11 +17,14 @@ class ADVANCECPLUSPLUS_API ULeagueTemplate : public UUserWidget
 
 public:
 	UFUNCTION(BlueprintCallable)
-	void ChangeText(FString Name, int Score);
+	void ChangeText(FString Name, int Score, int Place);
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Text")
 	UTextBlock* NameTextBlock;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Text")
 	UTextBlock* ScoreTextBlock;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Text")
+	UTextBlock* PlacementTextBlock;
 	
 };
