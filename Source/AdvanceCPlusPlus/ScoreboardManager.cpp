@@ -43,20 +43,14 @@ void AScoreboardManager::BeginPlay()
 		}
 	}
 
-
-	/*
-	FScoreboardData P1;
-	P1.Name = "Chris";
-	P1.Score = 100;
-
-	FScoreboardData P2;
-	P2.Name = "Bob";
-	P2.Score = 200;
-	s
-	MyBinaryTree->Insert(P1);
-	MyBinaryTree->Insert(P2);
+	for (const FScoreboardData& ScoreboardData : ScoreboardArray)
+	{
+		FScoreboardData ScoreboardTemp;
+		ScoreboardTemp.Name = ScoreboardData.Name;
+		ScoreboardTemp.Score = ScoreboardData.Score;
+		MyBinaryTree->Insert(ScoreboardTemp);
+	}
 	
-
 	TArray<FScoreboardData> InOrderResult;
 	MyBinaryTree->InOrderTraversal(MyBinaryTree->Root, InOrderResult);
 
@@ -66,7 +60,7 @@ void AScoreboardManager::BeginPlay()
 		UE_LOG(LogTemp, Warning, TEXT("%d"), Value.Score);
 		
 	}
-	*/
+	
 	
 	
 		
