@@ -3,6 +3,12 @@
 
 #include "LeagueTemplate.h"
 
-void ULeagueTemplate::test()
+void ULeagueTemplate::ChangeText(FString Name, int Score)
 {
+	if (NameTextBlock)
+	{
+		NameTextBlock->SetText(FText::FromString(Name));
+		ScoreTextBlock->SetText(FText::FromString(FString::Printf(TEXT("%d"), Score)));
+		
+	}
 }

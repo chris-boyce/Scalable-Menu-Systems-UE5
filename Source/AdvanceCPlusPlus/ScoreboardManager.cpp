@@ -2,6 +2,7 @@
 
 #include "ScoreboardManager.h"
 
+#include "LeagueTemplate.h"
 #include "UObject/ConstructorHelpers.h"
 
 AScoreboardManager::AScoreboardManager()
@@ -23,7 +24,8 @@ void AScoreboardManager::CreateTemplate()
 		for (FScoreboardData Value : InOrderResult)
 		{
 			// Create an instance of your custom widget
-			UUserWidget* NewItem = CreateWidget<UUserWidget>(GetWorld(), TemplateWidget);
+			ULeagueTemplate* NewItem = CreateWidget<ULeagueTemplate>(GetWorld(), TemplateWidget);
+			NewItem->ChangeText(Value.Name , Value.Score);
 			// Add the new item to the scroll box
 			MyScrollBox->AddChild(NewItem);
 		}
