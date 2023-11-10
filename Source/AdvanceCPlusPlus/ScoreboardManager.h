@@ -6,6 +6,7 @@
 #include "Engine/DataTable.h"
 #include "GameFramework/Actor.h"
 #include "BinaryTreeClass.h"
+#include "Components/ScrollBox.h"
 #include "ScoreboardManager.generated.h"
 
 
@@ -22,7 +23,20 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "ScoreboardDataTable")
 	UDataTable* ScoreBoardDataTable;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
+	UScrollBox* MyScrollBox;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
+	TSubclassOf<UUserWidget> TemplateWidget;
+
+	UFUNCTION(BlueprintCallable)
+	void CreateTemplate();
+
+	UBinaryTreeClass* ScoreBoardBinaryTree;
+
 
 protected:
 	virtual void BeginPlay() override;
+
+	
 };
