@@ -5,20 +5,9 @@
 #include "CoreMinimal.h"
 #include "Engine/DataTable.h"
 #include "GameFramework/Actor.h"
+#include "BinaryTreeClass.h"
 #include "ScoreboardManager.generated.h"
 
-//Data Table Struct
-USTRUCT(BlueprintType)
-struct FScoreboardData : public FTableRowBase
-{
-	GENERATED_BODY()
-public:
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	FString Name;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	int32 Score;
-};
 
 UCLASS()
 class ADVANCECPLUSPLUS_API AScoreboardManager : public AActor
