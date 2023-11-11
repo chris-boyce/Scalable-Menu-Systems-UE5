@@ -1,9 +1,7 @@
 // Chris Boyce 1908671 - Advanced C++ Module 
 
 #include "ScoreboardManager.h"
-
 #include "LeagueTemplate.h"
-#include "UObject/ConstructorHelpers.h"
 
 AScoreboardManager::AScoreboardManager()
 {
@@ -24,33 +22,17 @@ void AScoreboardManager::CreateTemplate()
 		for (int32 i = 0; i < InOrderResult.Num(); ++i)
 		{
 			FScoreboardData Value = InOrderResult[i];
-
-			// Create an instance of your custom widget
 			ULeagueTemplate* NewItem = CreateWidget<ULeagueTemplate>(GetWorld(), TemplateWidget);
 			NewItem->ChangeText(Value.Name, Value.Score, i);
-
-			// Add the new item to the scroll box
 			MyScrollBox->AddChild(NewItem);
 		}
 		
-		/*
-
-		for (FScoreboardData Value : InOrderResult)
-		{
-			// Create an instance of your custom widget
-			ULeagueTemplate* NewItem = CreateWidget<ULeagueTemplate>(GetWorld(), TemplateWidget);
-			NewItem->ChangeText(Value.Name , Value.Score);
-			// Add the new item to the scroll box
-			MyScrollBox->AddChild(NewItem);
-		}
-		*/
 	}
 }
 
 void AScoreboardManager::BeginPlay()
 {
 	Super::BeginPlay();
-	UE_LOG(LogTemp, Warning, TEXT("Has Run Begin Play"));
 	ScoreBoardBinaryTree = NewObject<UBinaryTreeClass>(this);
 
 	if (ScoreBoardDataTable)
@@ -68,18 +50,6 @@ void AScoreboardManager::BeginPlay()
 			}
 		}
 	}
-	
-	//Display the Binary Tree in the Console Inorder
-	TArray<FScoreboardData> InOrderResult;
-	ScoreBoardBinaryTree->InOrderTraversal(ScoreBoardBinaryTree->Root, InOrderResult);
-
-	for (FScoreboardData Value : InOrderResult)
-	{
-		UE_LOG(LogTemp, Warning, TEXT("%s"), *Value.Name);
-		UE_LOG(LogTemp, Warning, TEXT("%d"), Value.Score);
-	}
-	
-	
 }
 
 

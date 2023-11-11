@@ -3,7 +3,6 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Engine/DataTable.h"
 #include "GameFramework/Actor.h"
 #include "BinaryTreeClass.h"
 #include "Components/ScrollBox.h"

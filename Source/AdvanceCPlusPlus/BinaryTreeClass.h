@@ -14,11 +14,7 @@ class ADVANCECPLUSPLUS_API UBinaryTreeClass : public UObject
 public:
 	UBinaryTreeNode* Root;
 	UBinaryTreeClass() : Root(nullptr) {}
-
-	// Function to insert a value into the binary tree
 	void Insert(FScoreboardData Value);
-
-	// Function to perform an inorder traversal of the binary tree
 	void InOrderTraversal(UBinaryTreeNode* Node, TArray<FScoreboardData>& Result);
 	
 };

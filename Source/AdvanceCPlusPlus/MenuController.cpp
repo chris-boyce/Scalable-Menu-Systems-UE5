@@ -21,21 +21,16 @@ void AMenuController::ShowWidget()
 		{
 			UE_LOG(LogTemp, Error, TEXT("We Are broken"));
 		}
-		
 		APlayerController* PlayerController = UGameplayStatics::GetPlayerController(GetWorld(), 0);
 		FInputModeUIOnly InputModeData;
 		InputModeData.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
-
 		PlayerController->SetInputMode(InputModeData);
 		PlayerController->bShowMouseCursor = true;
-		
 	}
 	catch (const FString& ErrorMessage)
 	{
 		UE_LOG(LogTemp, Error, TEXT("%s"), *ErrorMessage);
 	}
-	
-	
 }
 
 void AMenuController::ShowTopUI()
@@ -55,22 +50,22 @@ void AMenuController::AddToUIQueue(UUserWidget* WidgetToAdd)
 {
 	UIQueue.Enqueue(WidgetToAdd);
 	ShowTopUI();
-	
 }
+
 void AMenuController::RemoveTopUI()
 {
 	UUserWidget* TopWidget;
 	if (UIQueue.Dequeue(TopWidget))
 	{
-		// Hide or remove the top UI widget
 		TopWidget->RemoveFromParent();
 	}
-
-	// Show the new top UI widget
 	ShowTopUI();
 	
 }
 
+/**
+ * Queues Functions for Each Widget
+ */
 void AMenuController::MainMenuEnable()
 {
 	AddToUIQueue(UIWidget1);
