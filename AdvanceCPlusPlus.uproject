@@ -11,9 +11,9 @@
 			"AdditionalDependencies": [
 				"Engine",
 				"CoreUObject",
-				"UMGEditor",
 				"UMG"
-			]
+			],
+			"bEnableExceptions": true 
 		}
 	],
 	"Plugins": [
