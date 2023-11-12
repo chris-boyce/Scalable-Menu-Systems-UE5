@@ -4,38 +4,37 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "BinaryTreeClass.h"
+#include "LinkedListClass.h"
 #include "Components/ScrollBox.h"
-#include "ScoreboardManager.generated.h"
-
+#include "BattlePassManager.generated.h"
 
 UCLASS()
-class ADVANCECPLUSPLUS_API AScoreboardManager : public AActor
+class ADVANCECPLUSPLUS_API ABattlePassManager : public AActor
 {
 	GENERATED_BODY()
 	
 public:	
-	AScoreboardManager();
-	/**
-	 * Please Assign this in the Inspector of BP_ScoreboardManager
-	 */
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "ScoreboardDataTable")
-	UDataTable* ScoreBoardDataTable;
+	ABattlePassManager();
+
+	ULinkedListClass* BattlePassLinkedList;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BattlePass")
+	TArray<FBattlePassDataStruct> BattlePassArray;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
 	UScrollBox* ScrollBox;
-	
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
 	TSubclassOf<UUserWidget> TemplateWidget;
 
 	UFUNCTION(BlueprintCallable)
 	void CreateTemplate();
 
-	UBinaryTreeClass* ScoreBoardBinaryTree;
-
 
 protected:
 	virtual void BeginPlay() override;
 
-	
+public:	
+	virtual void Tick(float DeltaTime) override;
+
 };

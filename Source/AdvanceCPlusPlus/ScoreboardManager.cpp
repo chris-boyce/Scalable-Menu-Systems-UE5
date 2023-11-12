@@ -14,7 +14,7 @@ AScoreboardManager::AScoreboardManager()
 
 void AScoreboardManager::CreateTemplate()
 {
-	if(MyScrollBox)
+	if(ScrollBox)
 	{
 		TArray<FScoreboardData> InOrderResult;
 		ScoreBoardBinaryTree->InOrderTraversal(ScoreBoardBinaryTree->Root, InOrderResult);
@@ -24,7 +24,7 @@ void AScoreboardManager::CreateTemplate()
 			FScoreboardData Value = InOrderResult[i];
 			ULeagueTemplate* NewItem = CreateWidget<ULeagueTemplate>(GetWorld(), TemplateWidget);
 			NewItem->ChangeText(Value.Name, Value.Score, i);
-			MyScrollBox->AddChild(NewItem);
+			ScrollBox->AddChild(NewItem);
 		}
 		
 	}
