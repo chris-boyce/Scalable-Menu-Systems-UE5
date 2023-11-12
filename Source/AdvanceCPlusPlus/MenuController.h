@@ -65,8 +65,11 @@ private:
 	/**
 	 * Widget Layers for Each Layer <- Assigned In Begin Play 
 	 */
+	UPROPERTY()
 	UUserWidget* UIWidget1;
+	UPROPERTY()
 	UUserWidget* UIWidget2;
+	UPROPERTY()
 	UUserWidget* UIWidget3;
 	
 	

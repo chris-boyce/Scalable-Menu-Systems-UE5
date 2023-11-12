@@ -28,9 +28,13 @@ class ADVANCECPLUSPLUS_API UBinaryTreeNode : public UObject
 	GENERATED_BODY()
 public:
 	UBinaryTreeNode();
+	UPROPERTY()
 	UBinaryTreeNode* LeftChild;
+	UPROPERTY()
 	UBinaryTreeNode* RightChild;
+	UPROPERTY()
 	FScoreboardData Value;
+	
 	UBinaryTreeNode(FScoreboardData NewValue) : LeftChild(nullptr), RightChild(nullptr), Value(NewValue) {}
 	
 	

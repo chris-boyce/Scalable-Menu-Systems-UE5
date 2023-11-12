@@ -37,6 +37,7 @@ public:
 	//Overloaded Functions to Split the Int and the String Searches
 	void SearchBinaryTree(int SearchItem);
 	void SearchBinaryTree(FString SearchItem);
+	UFUNCTION()
 	void ResultHandler(UBinaryTreeNode* Result);
 
 	UFUNCTION(BlueprintCallable)
@@ -44,7 +45,8 @@ public:
 
 	UPROPERTY(BlueprintReadOnly)
 	FScoreboardData OutputText;
-	
+
+	UPROPERTY()
 	UBinaryTreeClass* ScoreBoardBinaryTree;
 
 

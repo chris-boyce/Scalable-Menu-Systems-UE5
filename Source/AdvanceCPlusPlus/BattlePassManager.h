@@ -16,6 +16,7 @@ class ADVANCECPLUSPLUS_API ABattlePassManager : public AActor
 public:	
 	ABattlePassManager();
 
+	UPROPERTY()
 	ULinkedListClass* BattlePassLinkedList;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BattlePass")
@@ -29,9 +30,6 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void CreateTemplate();
-
-
-	
 	
 	void LoopWithDelay();
 

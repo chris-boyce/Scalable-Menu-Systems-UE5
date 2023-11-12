@@ -12,7 +12,9 @@ class ADVANCECPLUSPLUS_API UBinaryTreeClass : public UObject
 {
 	GENERATED_BODY()
 public:
+	UPROPERTY()
 	UBinaryTreeNode* Root;
+	
 	UBinaryTreeClass() : Root(nullptr) {}
 	void Insert(FScoreboardData Value);
 	void InOrderTraversal(UBinaryTreeNode* Node, TArray<FScoreboardData>& Result);
