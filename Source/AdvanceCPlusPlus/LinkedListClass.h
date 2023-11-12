@@ -33,9 +33,7 @@ class ADVANCECPLUSPLUS_API ULinkedListClass : public UObject
 {
 	GENERATED_BODY()
 public:
-	UPROPERTY()
 	FNode* First;
-	
 	ULinkedListClass() : First(nullptr) {}
 	void AddNode(FBattlePassDataStruct Data);
 	void PrintList();
