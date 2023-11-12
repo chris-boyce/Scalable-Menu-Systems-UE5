@@ -13,3 +13,9 @@ void ULeagueTemplate::ChangeText(FString Name, int Score, int Place)
 		
 	}
 }
+void ULeagueTemplate::RemoveTemplate()
+{
+	RemoveFromParent();
+	ConditionalBeginDestroy();
+}
+

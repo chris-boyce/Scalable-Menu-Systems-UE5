@@ -18,6 +18,10 @@ class ADVANCECPLUSPLUS_API ULeagueTemplate : public UUserWidget
 public:
 	UFUNCTION(BlueprintCallable)
 	void ChangeText(FString Name, int Score, int Place);
+
+	UFUNCTION(BlueprintCallable)
+	void RemoveTemplate();
+	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Text")
 	UTextBlock* NameTextBlock;
 
