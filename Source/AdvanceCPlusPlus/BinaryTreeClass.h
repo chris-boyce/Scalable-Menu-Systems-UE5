@@ -16,5 +16,8 @@ public:
 	UBinaryTreeClass() : Root(nullptr) {}
 	void Insert(FScoreboardData Value);
 	void InOrderTraversal(UBinaryTreeNode* Node, TArray<FScoreboardData>& Result);
+	void ReverseOrderTraversal(UBinaryTreeNode* Node, TArray<FScoreboardData>& Result);
+	UBinaryTreeNode* OrderedSearch(UBinaryTreeNode* Node, FString SearchString);
+	UBinaryTreeNode* BinarySearch(UBinaryTreeNode* Node, int SearchInt);
 	
 };

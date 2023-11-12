@@ -17,7 +17,7 @@ void AScoreboardManager::CreateTemplate()
 	if(ScrollBox)
 	{
 		TArray<FScoreboardData> InOrderResult;
-		ScoreBoardBinaryTree->InOrderTraversal(ScoreBoardBinaryTree->Root, InOrderResult);
+		ScoreBoardBinaryTree->ReverseOrderTraversal(ScoreBoardBinaryTree->Root, InOrderResult);
 
 		for (int32 i = 0; i < InOrderResult.Num(); ++i)
 		{
@@ -29,6 +29,20 @@ void AScoreboardManager::CreateTemplate()
 		
 	}
 }
+
+void AScoreboardManager::SearchBinaryTree1(int SearchItem)
+{
+	UBinaryTreeNode* result = ScoreBoardBinaryTree->OrderedSearch(ScoreBoardBinaryTree->Root , "Christopher");
+	UE_LOG(LogTemp, Warning, TEXT("Result Score: %d"), result->Value.Score);
+}
+
+void AScoreboardManager::SearchBinaryTree1(FString SearchItem)
+{
+	UBinaryTreeNode* result = ScoreBoardBinaryTree->BinarySearch(ScoreBoardBinaryTree->Root , 10497);
+	UE_LOG(LogTemp, Warning, TEXT("Result Name: %s"), *result->Value.Name);
+}
+
+
 
 void AScoreboardManager::BeginPlay()
 {
@@ -50,6 +64,8 @@ void AScoreboardManager::BeginPlay()
 			}
 		}
 	}
+	SearchBinaryTree1("Christopher");
+	SearchBinaryTree1(10497);
 }
 
 

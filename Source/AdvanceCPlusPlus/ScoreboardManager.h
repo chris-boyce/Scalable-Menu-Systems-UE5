@@ -30,7 +30,10 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void CreateTemplate();
-
+	
+	void SearchBinaryTree1(int SearchItem);
+	void SearchBinaryTree1(FString SearchItem); 
+	
 	UBinaryTreeClass* ScoreBoardBinaryTree;
 
 

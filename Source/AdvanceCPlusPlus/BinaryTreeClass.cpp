@@ -55,4 +55,55 @@ void UBinaryTreeClass::InOrderTraversal(UBinaryTreeNode* Node, TArray<FScoreboar
 	}
 	
 }
+void UBinaryTreeClass::ReverseOrderTraversal(UBinaryTreeNode* Node, TArray<FScoreboardData>& Result)
+{
+	if (Node)
+	{
+		ReverseOrderTraversal(Node->RightChild, Result);
+		Result.Add(Node->Value);
+		ReverseOrderTraversal(Node->LeftChild, Result);
+	}
+}
+
+UBinaryTreeNode* UBinaryTreeClass::OrderedSearch(UBinaryTreeNode* Node, FString SearchString)
+{
+	if(Node == nullptr)
+	{
+		return nullptr;
+	}
+	if(Node->Value.Name == SearchString)
+	{
+		return Node;
+	}
+	UBinaryTreeNode* leftResult = OrderedSearch(Node->LeftChild, SearchString);
+	UBinaryTreeNode* rightResult = OrderedSearch(Node->RightChild, SearchString);
+	
+	if (leftResult != nullptr)
+	{
+		return leftResult;
+	}
+	else
+	{
+		return rightResult;
+	}
+	
+	
+}
+
+UBinaryTreeNode* UBinaryTreeClass::BinarySearch(UBinaryTreeNode* Node, int SearchInt)
+{
+	if (Node == nullptr || Node->Value.Score == SearchInt)
+	{
+		return Node;
+	}
+	
+	if(SearchInt < Node->Value.Score)
+	{
+		return BinarySearch(Node->LeftChild , SearchInt);
+	}
+	else
+	{
+		return BinarySearch(Node->RightChild, SearchInt);
+	}
+}
 
