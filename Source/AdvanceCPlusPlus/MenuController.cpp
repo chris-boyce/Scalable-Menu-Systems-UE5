@@ -38,18 +38,30 @@ void AMenuController::ShowTopUI()
 	UUserWidget* TopWidget;
 	if (UIQueue.Peek(TopWidget))
 	{
-		// Show or add the top UI widget to the viewport
-		if (!TopWidget->IsInViewport())
+		if(TopWidget)
 		{
-			TopWidget->AddToViewport();
+			// Show or add the top UI widget to the viewport
+			if (!TopWidget->IsInViewport())
+			{
+				TopWidget->AddToViewport();
+			}
 		}
+		
 	}
 }
 
 void AMenuController::AddToUIQueue(UUserWidget* WidgetToAdd)
 {
-	UIQueue.Enqueue(WidgetToAdd);
-	ShowTopUI();
+	if(WidgetToAdd)
+	{
+		UIQueue.Enqueue(WidgetToAdd);
+		ShowTopUI();
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("WIDGET IS NULL"));
+	}
+	
 }
 
 void AMenuController::RemoveTopUI()
@@ -57,7 +69,14 @@ void AMenuController::RemoveTopUI()
 	UUserWidget* TopWidget;
 	if (UIQueue.Dequeue(TopWidget))
 	{
-		TopWidget->RemoveFromParent();
+		if (TopWidget && TopWidget->IsInViewport())
+		{
+			TopWidget->RemoveFromParent();
+		}
+		else
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Trying to remove a widget that is not in the viewport or is nullptr."));
+		}
 	}
 	ShowTopUI();
 	

@@ -30,6 +30,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void CreateTemplate();
 
+
+	
+	
 	void LoopWithDelay();
 
 	int CurrentIndex;

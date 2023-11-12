@@ -4,6 +4,7 @@
 #include "BattlePassManager.h"
 
 #include "BattlePassTemplate.h"
+#include "Blueprint/WidgetBlueprintLibrary.h"
 
 FTimerHandle TimerHandle;
 
@@ -16,9 +17,12 @@ void ABattlePassManager::CreateTemplate()
 {
 	if(ScrollBox)
 	{
+		CurrentIndex = 0;
 		LoopWithDelay();
 	}
 }
+
+
 
 void ABattlePassManager::LoopWithDelay() //Adds Animation to the Boxes Appearing
 {

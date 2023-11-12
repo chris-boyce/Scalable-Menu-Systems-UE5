@@ -21,6 +21,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void ChangeItems(FString Name, UTexture2D* Item, bool Unlock);
 	
+	UFUNCTION(BlueprintCallable)
+	void RemoveTemplate();
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Text")
 	UTextBlock* NameTextBlock;
 
