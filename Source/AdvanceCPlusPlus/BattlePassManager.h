@@ -30,6 +30,10 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void CreateTemplate();
 
+	void LoopWithDelay();
+
+	int CurrentIndex;
+
 
 protected:
 	virtual void BeginPlay() override;

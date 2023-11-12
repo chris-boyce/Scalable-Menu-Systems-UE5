@@ -29,4 +29,6 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Text")
 	UButton* UnlockButton;
+
+
 };

@@ -5,6 +5,8 @@
 
 #include "BattlePassTemplate.h"
 
+FTimerHandle TimerHandle;
+
 ABattlePassManager::ABattlePassManager()
 {
 	PrimaryActorTick.bCanEverTick = true;
@@ -14,15 +16,23 @@ void ABattlePassManager::CreateTemplate()
 {
 	if(ScrollBox)
 	{
-		for (int32 i = 0; i < BattlePassArray.Num(); ++i)
+		LoopWithDelay();
+	}
+}
+
+void ABattlePassManager::LoopWithDelay() //Adds Animation to the Boxes Appearing
+{
+	if (CurrentIndex < BattlePassArray.Num())
+	{
+		FBattlePassDataStruct Value = BattlePassArray[CurrentIndex];
+		UBattlePassTemplate* NewItem = CreateWidget<UBattlePassTemplate>(GetWorld(), TemplateWidget);
+		NewItem->ChangeItems(Value.Name, Value.Image, Value.Unlocked);
+		ScrollBox->AddChild(NewItem);
+		CurrentIndex++;
+		if (CurrentIndex < BattlePassArray.Num())
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Has Run template Set up"));
-			FBattlePassDataStruct Value = BattlePassArray[i];
-			UBattlePassTemplate* NewItem = CreateWidget<UBattlePassTemplate>(GetWorld(), TemplateWidget);
-			NewItem->ChangeItems(Value.Name, Value.Image , Value.Unlocked);
-			ScrollBox->AddChild(NewItem);
+			GetWorldTimerManager().SetTimer(TimerHandle, this, &ABattlePassManager::LoopWithDelay, 0.1f, false);
 		}
-		
 	}
 }
 
