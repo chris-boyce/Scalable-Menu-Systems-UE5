@@ -5,7 +5,6 @@
 
 AScoreboardManager::AScoreboardManager()
 {
-	PrimaryActorTick.bCanEverTick = true;
 	if(ScoreBoardDataTable)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Data Table imported"));
@@ -16,10 +15,10 @@ void AScoreboardManager::CreateTemplate()
 {
 	if(ScrollBox)
 	{
-		TArray<FScoreboardData> InOrderResult;
+		TArray<FScoreboardData> InOrderResult; // <- Returns Array of them in order OR in this case reversed HI-Score
 		ScoreBoardBinaryTree->ReverseOrderTraversal(ScoreBoardBinaryTree->Root, InOrderResult);
 
-		for (int32 i = 0; i < InOrderResult.Num(); ++i)
+		for (int32 i = 0; i < InOrderResult.Num(); ++i) //Creates the Template and Changes the Text in The Widget. Does this for each entry
 		{
 			FScoreboardData Value = InOrderResult[i];
 			ULeagueTemplate* NewItem = CreateWidget<ULeagueTemplate>(GetWorld(), TemplateWidget);
@@ -30,26 +29,55 @@ void AScoreboardManager::CreateTemplate()
 	}
 }
 
-void AScoreboardManager::SearchBinaryTree1(int SearchItem)
+void AScoreboardManager::SearchBinaryTree(int SearchItem)
 {
-	UBinaryTreeNode* result = ScoreBoardBinaryTree->OrderedSearch(ScoreBoardBinaryTree->Root , "Christopher");
-	UE_LOG(LogTemp, Warning, TEXT("Result Score: %d"), result->Value.Score);
+	UBinaryTreeNode* Result = ScoreBoardBinaryTree->BinarySearch(ScoreBoardBinaryTree->Root , SearchItem);
+	ResultHandler(Result);
 }
 
-void AScoreboardManager::SearchBinaryTree1(FString SearchItem)
+void AScoreboardManager::SearchBinaryTree(FString SearchItem)
 {
-	UBinaryTreeNode* result = ScoreBoardBinaryTree->BinarySearch(ScoreBoardBinaryTree->Root , 10497);
-	UE_LOG(LogTemp, Warning, TEXT("Result Name: %s"), *result->Value.Name);
+	UBinaryTreeNode* Result = ScoreBoardBinaryTree->OrderedSearch(ScoreBoardBinaryTree->Root , SearchItem);
+	ResultHandler(Result);
+	
 }
 
+void AScoreboardManager::ResultHandler(UBinaryTreeNode* Result)
+{
+	if(Result)
+	{
+		OutputText.Name = Result->Value.Name;
+		OutputText.Score = Result->Value.Score;
+	}
+	else
+	{
+		OutputText.Name = "There is No Player With This Name";
+		OutputText.Score = 0;
+	}
+}
+
+void AScoreboardManager::InitSearch(FString SearchItem)
+{
+	if(SearchItem.IsNumeric())
+	{
+		int temp = FCString::Atoi(*SearchItem);
+		SearchBinaryTree(temp);
+		UE_LOG(LogTemp, Warning, TEXT("Number"));
+	}
+	else
+	{
+		SearchBinaryTree(SearchItem);
+		UE_LOG(LogTemp, Warning, TEXT("String"));
+	}
+}
 
 
 void AScoreboardManager::BeginPlay()
 {
 	Super::BeginPlay();
-	ScoreBoardBinaryTree = NewObject<UBinaryTreeClass>(this);
+	ScoreBoardBinaryTree = NewObject<UBinaryTreeClass>(this); //Creates Binary Tree For this to Use
 
-	if (ScoreBoardDataTable)
+	if (ScoreBoardDataTable) //Imports Data from Datatable into the Binary Tree (InOrder)
 	{
 		TArray<FName> RowNames = ScoreBoardDataTable->GetRowNames();
 		for (FName RowName : RowNames)
@@ -64,8 +92,6 @@ void AScoreboardManager::BeginPlay()
 			}
 		}
 	}
-	SearchBinaryTree1("Christopher");
-	SearchBinaryTree1(10497);
 }
 
 

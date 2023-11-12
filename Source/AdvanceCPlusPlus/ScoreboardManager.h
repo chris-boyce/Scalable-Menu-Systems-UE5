@@ -17,22 +17,33 @@ class ADVANCECPLUSPLUS_API AScoreboardManager : public AActor
 public:	
 	AScoreboardManager();
 	/**
-	 * Please Assign this in the Inspector of BP_ScoreboardManager
+	 * Please Assign this in the Inspector of BP_ScoreboardManager <- Inserted Data CSV File To Data Table
 	 */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "ScoreboardDataTable")
 	UDataTable* ScoreBoardDataTable;
+	
 
+	//Variable to Create the Scroll Box and the Template, Function to Insert them Called once Scroll Box is Assigned <- Blueprint Called in ScoreBoard Manager
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
 	UScrollBox* ScrollBox;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
 	TSubclassOf<UUserWidget> TemplateWidget;
-
+	
 	UFUNCTION(BlueprintCallable)
 	void CreateTemplate();
 	
-	void SearchBinaryTree1(int SearchItem);
-	void SearchBinaryTree1(FString SearchItem); 
+
+	//Overloaded Functions to Split the Int and the String Searches
+	void SearchBinaryTree(int SearchItem);
+	void SearchBinaryTree(FString SearchItem);
+	void ResultHandler(UBinaryTreeNode* Result);
+
+	UFUNCTION(BlueprintCallable)
+	void InitSearch(FString SearchItem);
+
+	UPROPERTY(BlueprintReadOnly)
+	FScoreboardData OutputText;
 	
 	UBinaryTreeClass* ScoreBoardBinaryTree;
 

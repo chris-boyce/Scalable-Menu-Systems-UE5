@@ -22,7 +22,6 @@ public:
 };
 
 
-
 UCLASS()
 class ADVANCECPLUSPLUS_API UBinaryTreeNode : public UObject
 {

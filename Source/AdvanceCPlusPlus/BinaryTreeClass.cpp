@@ -45,7 +45,7 @@ void UBinaryTreeClass::Insert(FScoreboardData Value)
 	}
 }
 
-void UBinaryTreeClass::InOrderTraversal(UBinaryTreeNode* Node, TArray<FScoreboardData>& Result)
+void UBinaryTreeClass::InOrderTraversal(UBinaryTreeNode* Node, TArray<FScoreboardData>& Result) //Smallest to Biggest
 {
 	if (Node)
 	{
@@ -55,7 +55,7 @@ void UBinaryTreeClass::InOrderTraversal(UBinaryTreeNode* Node, TArray<FScoreboar
 	}
 	
 }
-void UBinaryTreeClass::ReverseOrderTraversal(UBinaryTreeNode* Node, TArray<FScoreboardData>& Result)
+void UBinaryTreeClass::ReverseOrderTraversal(UBinaryTreeNode* Node, TArray<FScoreboardData>& Result) //Biggest to Smallest
 {
 	if (Node)
 	{
@@ -65,7 +65,13 @@ void UBinaryTreeClass::ReverseOrderTraversal(UBinaryTreeNode* Node, TArray<FScor
 	}
 }
 
-UBinaryTreeNode* UBinaryTreeClass::OrderedSearch(UBinaryTreeNode* Node, FString SearchString)
+/**
+ * @brief This is for when searching by Name <- Goes through the whole tree Left to Right As names arent in "FScoreboardData"
+ * @param Node (Input Root of the Binary Tree)
+ * @param SearchString
+ * @return (Returns the Node that is linked to it. Has Struct "FScoreboardData" so links the Name and Score)
+ */
+UBinaryTreeNode* UBinaryTreeClass::OrderedSearch(UBinaryTreeNode* Node, FString SearchString) 
 {
 	if(Node == nullptr)
 	{
@@ -77,7 +83,6 @@ UBinaryTreeNode* UBinaryTreeClass::OrderedSearch(UBinaryTreeNode* Node, FString 
 	}
 	UBinaryTreeNode* leftResult = OrderedSearch(Node->LeftChild, SearchString);
 	UBinaryTreeNode* rightResult = OrderedSearch(Node->RightChild, SearchString);
-	
 	if (leftResult != nullptr)
 	{
 		return leftResult;
@@ -86,10 +91,14 @@ UBinaryTreeNode* UBinaryTreeClass::OrderedSearch(UBinaryTreeNode* Node, FString 
 	{
 		return rightResult;
 	}
-	
-	
 }
 
+/**
+ * @brief Binary Search Because the tree is ordered by the Ints in Struct "FScoreboardData"
+ * @param Node (Input Root of the Binary Tree)
+ * @param SearchInt (Int Searching For)
+ * @return (Returns the Node that is linked to it. Has Struct so links the Name and Score)
+ */
 UBinaryTreeNode* UBinaryTreeClass::BinarySearch(UBinaryTreeNode* Node, int SearchInt)
 {
 	if (Node == nullptr || Node->Value.Score == SearchInt)
