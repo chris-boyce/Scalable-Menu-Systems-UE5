@@ -19,7 +19,7 @@ class ADVANCECPLUSPLUS_API UBattlePassTemplate : public UUserWidget
 
 public:
 	UFUNCTION(BlueprintCallable)
-	void ChangeItems(FString Name, UTexture2D* Item, bool Unlock);
+	void ChangeItems(FString Name, UTexture2D* Item, bool Unlock, UMaterial* Texture);
 	
 	UFUNCTION(BlueprintCallable)
 	void RemoveTemplate();
@@ -32,6 +32,10 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Text")
 	UButton* UnlockButton;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Text")
+	UMaterial* TextureMaterial;
+	
 
 
 };

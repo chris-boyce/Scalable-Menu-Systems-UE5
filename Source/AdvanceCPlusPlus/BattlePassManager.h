@@ -30,6 +30,18 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void CreateTemplate();
+
+	UFUNCTION(BlueprintCallable)
+	void HoverTextureChange(UMaterial* Texture);
+
+	UFUNCTION(BlueprintCallable)
+	void ButtonTextureAssign(UMaterial* Texture);
+
+	UFUNCTION(BlueprintCallable)
+	void UnHoverTextureChange();
+
+	UPROPERTY()
+	UMaterial* EquippedGunTexture;
 	
 	void LoopWithDelay();
 

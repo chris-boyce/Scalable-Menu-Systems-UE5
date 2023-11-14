@@ -18,6 +18,8 @@ public:
 	FString Name;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool Unlocked;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UMaterial* GunTexture;
 };
 
 struct FNode

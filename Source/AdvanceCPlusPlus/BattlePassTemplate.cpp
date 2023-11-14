@@ -3,11 +3,11 @@
 
 #include "BattlePassTemplate.h"
 
-void UBattlePassTemplate::ChangeItems(FString Name, UTexture2D* Item, bool Unlock)
+void UBattlePassTemplate::ChangeItems(FString Name, UTexture2D* Item, bool Unlock, UMaterial* Texture)
 {
 	NameTextBlock->SetText(FText::FromString(Name));
 	ItemImage->SetBrushFromTexture(Item);
-	
+	TextureMaterial = Texture;
 }
 
 void UBattlePassTemplate::RemoveTemplate()
@@ -15,4 +15,5 @@ void UBattlePassTemplate::RemoveTemplate()
 	RemoveFromParent();
 	ConditionalBeginDestroy();
 }
+
 
