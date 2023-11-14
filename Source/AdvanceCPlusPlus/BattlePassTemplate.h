@@ -33,8 +33,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Text")
 	UButton* UnlockButton;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Text")
-	UMaterial* TextureMaterial;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Text")
+	UMaterial* TextureMaterial1;
 	
 
 

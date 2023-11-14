@@ -7,7 +7,7 @@ void UBattlePassTemplate::ChangeItems(FString Name, UTexture2D* Item, bool Unloc
 {
 	NameTextBlock->SetText(FText::FromString(Name));
 	ItemImage->SetBrushFromTexture(Item);
-	TextureMaterial = Texture;
+	TextureMaterial1 = Texture;
 }
 
 void UBattlePassTemplate::RemoveTemplate()
