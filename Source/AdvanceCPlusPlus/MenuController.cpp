@@ -102,6 +102,22 @@ void AMenuController::BattlePassMenuEnable()
 	RemoveTopUI();
 }
 
+void AMenuController::ClearAllUI()
+{
+	UUserWidget* TopWidget;
+	if (UIQueue.Dequeue(TopWidget))
+	{
+		if (TopWidget && TopWidget->IsInViewport())
+		{
+			TopWidget->RemoveFromParent();
+		}
+		else
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Trying to remove a widget that is not in the viewport or is nullptr."));
+		}
+	}
+}
+
 void AMenuController::BeginPlay()
 {
 	Super::BeginPlay();

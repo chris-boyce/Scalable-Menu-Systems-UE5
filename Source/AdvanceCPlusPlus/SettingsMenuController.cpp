@@ -17,13 +17,7 @@ ASettingsMenuController::ASettingsMenuController()
 void ASettingsMenuController::BeginPlay()
 {
 	Super::BeginPlay();
-	WidgetStack.Push(SettingMenuWidget);
-	WidgetStack.Push(GameplayMenuWidget);
-	WidgetStack.Pop();
 	
-	auto Temp = WidgetStack.Peek();
-
-	DisplayTopScreen(Temp);
 }
 
 // Called every frame
@@ -33,13 +27,34 @@ void ASettingsMenuController::Tick(float DeltaTime)
 
 }
 
-void ASettingsMenuController::DisplayTopScreen(UUserWidget* TopWidget)
+void ASettingsMenuController::DisplayTopScreen()
 {
+	auto TopWidget = WidgetStack.Peek();
 	if(TopWidget)
 	{
 		TopWidget->AddToViewport();
-		UE_LOG(LogTemp, Warning, TEXT("Has Tried"));
 	}
-	
+}
+
+void ASettingsMenuController::RemoveTopScreen()
+{
+	auto TopWidget = WidgetStack.Peek();
+	if(TopWidget)
+	{
+		TopWidget->RemoveFromViewport();
+	}
+	WidgetStack.Pop();
+}
+
+void ASettingsMenuController::AddToStack(UUserWidget* WidgetToAdd)
+{
+	WidgetStack.Push(WidgetToAdd);
+	DisplayTopScreen();
+}
+
+void ASettingsMenuController::SettingMenuStart()
+{
+	WidgetStack.Push(SettingMenuWidget);
+	DisplayTopScreen();
 }
 

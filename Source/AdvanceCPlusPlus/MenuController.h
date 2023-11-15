@@ -42,6 +42,11 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void BattlePassMenuEnable();
 
+	UFUNCTION(BlueprintCallable)
+	void ClearAllUI();
+
+	
+
 	/**
 	 * Class Input Needed <- Must be done in BP_MenuController Inspector
 	 */
@@ -61,12 +66,13 @@ protected:
 	virtual void BeginPlay() override;
 	
 	TQueue<UUserWidget*> UIQueue;
+	UPROPERTY(BlueprintReadOnly)
+	UUserWidget* UIWidget1;
 private:
 	/**
 	 * Widget Layers for Each Layer <- Assigned In Begin Play 
 	 */
-	UPROPERTY()
-	UUserWidget* UIWidget1;
+	
 	UPROPERTY()
 	UUserWidget* UIWidget2;
 	UPROPERTY()

@@ -24,12 +24,29 @@ public:
 	StackClass<UUserWidget*> WidgetStack;
 
 	UFUNCTION()
-	void DisplayTopScreen(UUserWidget* TopWidget);
+	void DisplayTopScreen();
+
+	UFUNCTION(BlueprintCallable)
+	void RemoveTopScreen();
+
 	
-	UPROPERTY(EditAnywhere)
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	UUserWidget* SettingMenuWidget;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	UUserWidget* GameplayMenuWidget;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UUserWidget* GraphicsMenuWidget;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UUserWidget* CrosshairMenuWidget;
+
+	UFUNCTION(BlueprintCallable)
+	void AddToStack(UUserWidget* WidgetToAdd);
+	
+	UFUNCTION(BlueprintCallable)
+	void SettingMenuStart();
 
 };
