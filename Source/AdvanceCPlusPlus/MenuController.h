@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
+#include "SavedGameData.h"
 #include "MenuController.generated.h"
 
 UCLASS()
@@ -29,6 +30,12 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void RemoveTopUI();
 
+	UPROPERTY()
+	USavedGameData* SaveGame;
+
+	UFUNCTION(BlueprintCallable)
+	void SaveGameData();
+
 	/**
 	 * Function Needed to Enable the Layer <- Assigned to run on button Click
 	 */
@@ -41,6 +48,9 @@ public:
 	
 	UFUNCTION(BlueprintCallable)
 	void BattlePassMenuEnable();
+	
+	UFUNCTION(BlueprintCallable)
+	void StoreMenuEnable();
 
 	UFUNCTION(BlueprintCallable)
 	void ClearAllUI();
@@ -60,6 +70,9 @@ public:
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UUserWidget> BattlePassMenuWidgetClass;
 
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UUserWidget> StoreMenuWidgetClass;
+
 	
 	
 protected:
@@ -77,6 +90,8 @@ private:
 	UUserWidget* UIWidget2;
 	UPROPERTY()
 	UUserWidget* UIWidget3;
+	UPROPERTY()
+	UUserWidget* UIWidget4;
 	
 	
 	

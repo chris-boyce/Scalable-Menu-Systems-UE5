@@ -8,6 +8,9 @@
 #include "Components/ScrollBox.h"
 #include "BattlePassManager.generated.h"
 
+
+
+
 UCLASS()
 class ADVANCECPLUSPLUS_API ABattlePassManager : public AActor
 {

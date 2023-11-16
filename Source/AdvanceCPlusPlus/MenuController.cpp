@@ -24,7 +24,6 @@ void AMenuController::ShowWidget()
 		APlayerController* PlayerController = UGameplayStatics::GetPlayerController(GetWorld(), 0);
 		FInputModeUIOnly InputModeData;
 		InputModeData.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
-		PlayerController->SetInputMode(InputModeData);
 		PlayerController->bShowMouseCursor = true;
 	}
 	catch (const FString& ErrorMessage)
@@ -82,6 +81,11 @@ void AMenuController::RemoveTopUI()
 	
 }
 
+void AMenuController::SaveGameData()
+{
+	SaveGame->SaveData();
+}
+
 /**
  * Queues Functions for Each Widget
  */
@@ -99,6 +103,11 @@ void AMenuController::LeagueMenuEnable()
 void AMenuController::BattlePassMenuEnable()
 {
 	AddToUIQueue(UIWidget3);
+	RemoveTopUI();
+}
+void AMenuController::StoreMenuEnable()
+{
+	AddToUIQueue(UIWidget4);
 	RemoveTopUI();
 }
 
@@ -125,6 +134,7 @@ void AMenuController::BeginPlay()
 	UIWidget1 = CreateWidget<UUserWidget>(this, MainMenuWidgetClass);
 	UIWidget2 = CreateWidget<UUserWidget>(GetWorld(), LeagueMenuWidgetClass);
 	UIWidget3 = CreateWidget<UUserWidget>(GetWorld(), BattlePassMenuWidgetClass);
+	UIWidget4 = CreateWidget<UUserWidget>(GetWorld(), StoreMenuWidgetClass);
 	AddToUIQueue(UIWidget1);
 }
 
