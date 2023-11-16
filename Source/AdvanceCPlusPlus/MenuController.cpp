@@ -81,10 +81,6 @@ void AMenuController::RemoveTopUI()
 	
 }
 
-void AMenuController::SaveGameData()
-{
-	SaveGame->SaveData();
-}
 
 /**
  * Queues Functions for Each Widget

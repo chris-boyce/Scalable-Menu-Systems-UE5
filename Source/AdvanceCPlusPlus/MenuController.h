@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
-#include "SavedGameData.h"
 #include "MenuController.generated.h"
 
 UCLASS()
@@ -30,12 +29,7 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void RemoveTopUI();
 
-	UPROPERTY()
-	USavedGameData* SaveGame;
-
-	UFUNCTION(BlueprintCallable)
-	void SaveGameData();
-
+	
 	/**
 	 * Function Needed to Enable the Layer <- Assigned to run on button Click
 	 */

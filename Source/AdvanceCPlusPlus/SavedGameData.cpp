@@ -2,25 +2,38 @@
 
 
 #include "SavedGameData.h"
-
 #include "Kismet/GameplayStatics.h"
 
-void USavedGameData::SaveData()
+
+void USavedGameData::SaveGunTextureData(UMaterial* GunMaterial2)
 {
 	USavedGameData* SaveGameInstance = Cast<USavedGameData>(UGameplayStatics::CreateSaveGameObject(USavedGameData::StaticClass()));
 	if (SaveGameInstance)
 	{
-		SaveGameInstance->SavedIntData = 20; 
+		SaveGameInstance->GunMaterial = GunMaterial2;
 		UGameplayStatics::SaveGameToSlot(SaveGameInstance, "SaveData", 0);
-		UE_LOG(LogTemp, Warning, TEXT("Save Game Called"))
+		UE_LOG(LogTemp, Error, TEXT("Saved Gun"));
 	}
 }
 
-void USavedGameData::LoadData()
+UMaterial* USavedGameData::LoadGunTextureData()
 {
 	USavedGameData* LoadedGame = Cast<USavedGameData>(UGameplayStatics::LoadGameFromSlot("SaveData", 0));
 	if (LoadedGame)
 	{
-		int32 LoadedIntData = LoadedGame->SavedIntData;
+		if (LoadedGame->GunMaterial)
+		{
+			return  LoadedGame->GunMaterial;
+		}
+		else
+		{
+			UE_LOG(LogTemp, Error, TEXT("No Material Found"));
+			return nullptr;
+		}
+	}
+	else
+	{
+		UE_LOG(LogTemp, Error, TEXT("No Loaded Game"));
+		return nullptr;
 	}
 }

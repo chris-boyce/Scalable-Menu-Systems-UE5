@@ -3,6 +3,8 @@
 
 #include "BattlePassTemplate.h"
 
+#include "UObject/UnrealTypePrivate.h"
+
 void UBattlePassTemplate::ChangeItems(FString Name, UTexture2D* Item, bool Unlock, UMaterial* Texture)
 {
 	NameTextBlock->SetText(FText::FromString(Name));
@@ -12,6 +14,8 @@ void UBattlePassTemplate::ChangeItems(FString Name, UTexture2D* Item, bool Unloc
 
 void UBattlePassTemplate::RemoveTemplate()
 {
+	
+	
 	RemoveFromParent();
 	ConditionalBeginDestroy();
 }
