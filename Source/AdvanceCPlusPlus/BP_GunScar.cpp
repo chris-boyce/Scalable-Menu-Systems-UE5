@@ -16,23 +16,18 @@ void ABP_GunScar::BeginPlay()
 {
 	Super::BeginPlay();
 	USavedGameData* LoadedGame = Cast<USavedGameData>(UGameplayStatics::LoadGameFromSlot("SaveData", 0));
-	if(LoadedGame)
+	if(LoadedGame->LoadGunTextureData())
 	{
-		if(LoadedGame->LoadGunTextureData())
-		{
-			GunTexture = LoadedGame->LoadGunTextureData();
-		}
-		else
-		{
-			UE_LOG(LogTemp, Error, TEXT("No Material on Scar"));
-		}
-		
+		GunTexture = LoadedGame->LoadGunTextureData();
 	}
 	else
 	{
-		UE_LOG(LogTemp, Error, TEXT("Load Game Not Loaded From Scar"));
+		UE_LOG(LogTemp, Error, TEXT("No Material on Scar"));
 	}
-	
+	if(LoadedGame->LoadMouseSense())
+	{
+		MouseSense = LoadedGame->LoadMouseSense();
+	}
 	
 	
 }

@@ -19,9 +19,12 @@ protected:
 	virtual void BeginPlay() override;
 
 public:
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	USavedGameData* SaveGameData;
 	
 	UFUNCTION(BlueprintCallable)
 	void SaveGunSkin(UMaterial* GunTexture);
+
+	UFUNCTION(BlueprintCallable)
+	void SaveMouseSense(float MouseSens);
 };

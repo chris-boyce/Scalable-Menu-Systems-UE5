@@ -14,4 +14,11 @@ class ADVANCECPLUSPLUS_API UGameplayMenuWidget : public UUserWidget
 {
 	GENERATED_BODY()
 	
+public:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float MouseSense;
+
+	UFUNCTION(BlueprintCallable)
+	float SetSenseValue();
+	
 };

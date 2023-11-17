@@ -5,6 +5,8 @@
 #include "Kismet/GameplayStatics.h"
 
 
+
+
 void USavedGameData::SaveGunTextureData(UMaterial* GunMaterial2)
 {
 	USavedGameData* SaveGameInstance = Cast<USavedGameData>(UGameplayStatics::CreateSaveGameObject(USavedGameData::StaticClass()));
@@ -12,28 +14,34 @@ void USavedGameData::SaveGunTextureData(UMaterial* GunMaterial2)
 	{
 		SaveGameInstance->GunMaterial = GunMaterial2;
 		UGameplayStatics::SaveGameToSlot(SaveGameInstance, "SaveData", 0);
-		UE_LOG(LogTemp, Error, TEXT("Saved Gun"));
+	}
+}
+
+void USavedGameData::SaveMouseSens(float MouseSens)
+{
+	USavedGameData* SaveGameInstance = Cast<USavedGameData>(UGameplayStatics::CreateSaveGameObject(USavedGameData::StaticClass()));
+	if (SaveGameInstance)
+	{
+		SaveGameInstance->MouseSensitivity = MouseSens;
+		UGameplayStatics::SaveGameToSlot(SaveGameInstance, "SaveData", 0);
 	}
 }
 
 UMaterial* USavedGameData::LoadGunTextureData()
 {
 	USavedGameData* LoadedGame = Cast<USavedGameData>(UGameplayStatics::LoadGameFromSlot("SaveData", 0));
-	if (LoadedGame)
+	if (LoadedGame->GunMaterial)
 	{
-		if (LoadedGame->GunMaterial)
-		{
-			return  LoadedGame->GunMaterial;
-		}
-		else
-		{
-			UE_LOG(LogTemp, Error, TEXT("No Material Found"));
-			return nullptr;
-		}
+		return  LoadedGame->GunMaterial;
 	}
 	else
 	{
-		UE_LOG(LogTemp, Error, TEXT("No Loaded Game"));
 		return nullptr;
 	}
+	
+}
+float USavedGameData::LoadMouseSense()
+{
+	USavedGameData* LoadedGame = Cast<USavedGameData>(UGameplayStatics::LoadGameFromSlot("SaveData", 0));
+	return LoadedGame->MouseSensitivity;
 }

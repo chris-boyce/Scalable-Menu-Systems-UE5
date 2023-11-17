@@ -3,3 +3,16 @@
 
 #include "GameplayMenuWidget.h"
 
+#include "SavedGameData.h"
+#include "Kismet/GameplayStatics.h"
+
+
+float UGameplayMenuWidget::SetSenseValue()
+{
+	USavedGameData* LoadedGame = Cast<USavedGameData>(UGameplayStatics::LoadGameFromSlot("SaveData", 0));
+	if(LoadedGame->LoadMouseSense())
+	{
+		return LoadedGame->LoadMouseSense();
+	}
+	return 0.5;
+}

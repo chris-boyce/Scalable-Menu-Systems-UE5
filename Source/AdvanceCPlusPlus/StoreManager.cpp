@@ -18,6 +18,17 @@ void AStoreManager::BeginPlay()
 	
 }
 
+void AStoreManager::BroughtItem(FString NameOfItemBrought)
+{
+	for (auto& Pair : StoreMap)
+	{
+		if (Pair.Value.Name == NameOfItemBrought)
+		{
+			Pair.Value.Purchased = true;
+		}
+	}
+}
+
 void AStoreManager::CreateTemplate()
 {
 	if(ScrollBox)
@@ -41,9 +52,7 @@ void AStoreManager::LoopWithDelay()
 		{
 			GetWorldTimerManager().SetTimer(TimerHandle2, this, &AStoreManager::LoopWithDelay, 0.1f, false);
 		}
-		
 	}
-	
 }
 
 void AStoreManager::Tick(float DeltaTime)

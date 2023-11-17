@@ -34,7 +34,7 @@ protected:
 	virtual void BeginPlay() override;
 
 public:
-	UPROPERTY(EditAnywhere, Category = "Map")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite,  Category = "Map")
 	TMap<int32, FStoreDataStructure> StoreMap;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
@@ -42,6 +42,9 @@ public:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
 	UScrollBox* ScrollBox;
+
+	UFUNCTION(BlueprintCallable)
+	void BroughtItem(FString NameOfItemBrought);
 
 	UFUNCTION(BlueprintCallable)
 	void CreateTemplate();

@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "StoreManager.h"
 #include "Blueprint/UserWidget.h"
+#include "Components/Button.h"
 #include "Components/Image.h"
 #include "Components/TextBlock.h"
 #include "ItemStoreWidget.generated.h"
@@ -31,5 +32,8 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Text")
 	UTextBlock* PriceTextBlock;
+
+	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="Text")
+	UButton* BuyButton;
 	
 };

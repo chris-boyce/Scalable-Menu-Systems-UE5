@@ -25,4 +25,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Save")
 	UMaterial* GunTexture;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Save")
+	float MouseSense;
+
 };

@@ -18,5 +18,10 @@ void ASaveGameContainer::SaveGunSkin(UMaterial* GunTexture)
 	SaveGameData->SaveGunTextureData(GunTexture);
 }
 
+void ASaveGameContainer::SaveMouseSense(float MouseSens)
+{
+	SaveGameData->SaveMouseSens(MouseSens);
+}
+
 
 
