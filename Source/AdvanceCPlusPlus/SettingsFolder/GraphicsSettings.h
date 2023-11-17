@@ -14,4 +14,7 @@ class ADVANCECPLUSPLUS_API UGraphicsSettings : public UUserWidget
 {
 	GENERATED_BODY()
 	
+	UFUNCTION(BlueprintCallable)
+	void ChangeAASetting(FString SettingType);
+	
 };
