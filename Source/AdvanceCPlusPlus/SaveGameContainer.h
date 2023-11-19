@@ -27,4 +27,9 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void SaveMouseSense(float MouseSens);
+
+	UFUNCTION(BlueprintCallable)
+	void SaveCrosshairSelected(UTexture2D* Crosshair);
+
+
 };

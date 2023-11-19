@@ -23,5 +23,12 @@ void ASaveGameContainer::SaveMouseSense(float MouseSens)
 	SaveGameData->SaveMouseSens(MouseSens);
 }
 
+void ASaveGameContainer::SaveCrosshairSelected(UTexture2D* Crosshair)
+{
+	SaveGameData->SaveCrosshair(Crosshair);
+}
+
+
+
 
 

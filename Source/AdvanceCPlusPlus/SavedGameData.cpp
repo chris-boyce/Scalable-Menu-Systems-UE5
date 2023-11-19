@@ -4,44 +4,76 @@
 #include "SavedGameData.h"
 #include "Kismet/GameplayStatics.h"
 
-
-
+//Saved Functions ---------------------
+void USavedGameData::SaveCrosshair(UTexture2D* SelectedCrosshiar)
+{
+	SaveData(SelectedCrosshiar, nullptr , LoadMouseSense());
+}
 
 void USavedGameData::SaveGunTextureData(UMaterial* GunMaterial2)
 {
-	USavedGameData* SaveGameInstance = Cast<USavedGameData>(UGameplayStatics::CreateSaveGameObject(USavedGameData::StaticClass()));
-	if (SaveGameInstance)
-	{
-		SaveGameInstance->GunMaterial = GunMaterial2;
-		UGameplayStatics::SaveGameToSlot(SaveGameInstance, "SaveData", 0);
-	}
+	SaveData(nullptr, GunMaterial2 , LoadMouseSense());
 }
 
 void USavedGameData::SaveMouseSens(float MouseSens)
 {
+	SaveData(nullptr, nullptr , MouseSens);
+}
+
+void USavedGameData::SaveData(UTexture2D* Crosshair1, UMaterial* GunMaterial1, float MouseSen1)
+{
 	USavedGameData* SaveGameInstance = Cast<USavedGameData>(UGameplayStatics::CreateSaveGameObject(USavedGameData::StaticClass()));
 	if (SaveGameInstance)
 	{
-		SaveGameInstance->MouseSensitivity = MouseSens;
+		if(Crosshair1)
+		{
+			SaveGameInstance->Crosshair = Crosshair1;
+		}
+		if(GunMaterial1)
+		{
+			SaveGameInstance->GunMaterial = GunMaterial1;
+		}
+		
+		SaveGameInstance->MouseSensitivity = (MouseSen1 != 0.0f) ? MouseSen1 : LoadMouseSense();
+		
 		UGameplayStatics::SaveGameToSlot(SaveGameInstance, "SaveData", 0);
+		
 	}
+}
+//Load Functions --------------
+bool USavedGameData::LoadGameData(USavedGameData*& OutLoadedGame)
+{
+	OutLoadedGame = Cast<USavedGameData>(UGameplayStatics::LoadGameFromSlot("SaveData", 0));
+	return OutLoadedGame != nullptr;
 }
 
 UMaterial* USavedGameData::LoadGunTextureData()
 {
-	USavedGameData* LoadedGame = Cast<USavedGameData>(UGameplayStatics::LoadGameFromSlot("SaveData", 0));
-	if (LoadedGame->GunMaterial)
+	USavedGameData* LoadedGame = nullptr;
+	if (LoadGameData(LoadedGame))
 	{
-		return  LoadedGame->GunMaterial;
+		return LoadedGame->GunMaterial;
 	}
-	else
-	{
-		return nullptr;
-	}
-	
+	return nullptr;
 }
+
 float USavedGameData::LoadMouseSense()
 {
-	USavedGameData* LoadedGame = Cast<USavedGameData>(UGameplayStatics::LoadGameFromSlot("SaveData", 0));
-	return LoadedGame->MouseSensitivity;
+	USavedGameData* LoadedGame = nullptr;
+	if (LoadGameData(LoadedGame))
+	{
+		return LoadedGame->MouseSensitivity;
+	}
+	return 0.5f;
 }
+
+UTexture2D* USavedGameData::LoadCrosshair()
+{
+	USavedGameData* LoadedGame = nullptr;
+	if (LoadGameData(LoadedGame))
+	{
+		return LoadedGame->Crosshair;
+	}
+	return nullptr;
+}
+

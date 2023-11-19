@@ -28,4 +28,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Save")
 	float MouseSense;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Save")
+	UStaticMesh* GunMesh;
+
+	
+
 };

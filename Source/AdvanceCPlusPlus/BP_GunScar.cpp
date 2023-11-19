@@ -20,10 +20,7 @@ void ABP_GunScar::BeginPlay()
 	{
 		GunTexture = LoadedGame->LoadGunTextureData();
 	}
-	else
-	{
-		UE_LOG(LogTemp, Error, TEXT("No Material on Scar"));
-	}
+	GunMesh->SetMaterial(0, GunTexture);
 	if(LoadedGame->LoadMouseSense())
 	{
 		MouseSense = LoadedGame->LoadMouseSense();
