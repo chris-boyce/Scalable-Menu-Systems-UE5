@@ -25,17 +25,9 @@ void USavedGameData::SaveData(UTexture2D* Crosshair1, UMaterial* GunMaterial1, f
 	USavedGameData* SaveGameInstance = Cast<USavedGameData>(UGameplayStatics::CreateSaveGameObject(USavedGameData::StaticClass()));
 	if (SaveGameInstance)
 	{
-		if(Crosshair1)
-		{
-			SaveGameInstance->Crosshair = Crosshair1;
-		}
-		if(GunMaterial1)
-		{
-			SaveGameInstance->GunMaterial = GunMaterial1;
-		}
-		
+		SaveGameInstance->Crosshair = (Crosshair1 != nullptr) ? Crosshair1 : LoadCrosshair();
+		SaveGameInstance->GunMaterial = (GunMaterial1 != nullptr) ? GunMaterial1 : LoadGunTextureData();
 		SaveGameInstance->MouseSensitivity = (MouseSen1 != 0.0f) ? MouseSen1 : LoadMouseSense();
-		
 		UGameplayStatics::SaveGameToSlot(SaveGameInstance, "SaveData", 0);
 		
 	}

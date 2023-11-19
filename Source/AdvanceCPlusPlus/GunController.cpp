@@ -40,7 +40,10 @@ void UGunController::BeginPlay()
 				UE_LOG(LogTemp, Warning, TEXT("WARNING RUNNING"));
 			}
 		}
-		
+		if(LoadedGame->MouseSensitivity)
+		{
+			Sense = LoadedGame->MouseSensitivity;
+		}
 	}
 	
 

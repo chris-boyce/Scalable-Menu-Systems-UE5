@@ -4,18 +4,22 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "BP_GunScar.generated.h"
+#include "InGameMenuController.generated.h"
 
 UCLASS()
-class ADVANCECPLUSPLUS_API ABP_GunScar : public AActor
+class ADVANCECPLUSPLUS_API AInGameMenuController : public AActor
 {
 	GENERATED_BODY()
 	
 public:	
-	ABP_GunScar();
+	AInGameMenuController();
+	UFUNCTION(BlueprintCallable)
+	void BackToMenu();
 
 protected:
 	virtual void BeginPlay() override;
+
+	
 
 	
 

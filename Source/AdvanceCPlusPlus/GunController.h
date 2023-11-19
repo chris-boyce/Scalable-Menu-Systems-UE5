@@ -19,6 +19,8 @@ public:
 	UMaterial* GunTexture;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Save")
 	UStaticMeshComponent* GunMesh;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Save")
+	float Sense;
 	
 
 protected:
