@@ -32,5 +32,10 @@ public:
 	virtual void Tick(float DeltaTime) override;
 	const char* APP_ID = RAW_APP_ID;
 	CSteamID MyID;
+	
+	UPROPERTY(EditAnywhere,BlueprintReadOnly)
+	UTexture2D* SteamIconTexture;
 
+	UPROPERTY(EditAnywhere,BlueprintReadOnly)
+	FString SteamName;
 };
