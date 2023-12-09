@@ -66,7 +66,7 @@ void UBinaryTreeClass::ReverseOrderTraversal(UBinaryTreeNode* Node, TArray<FScor
 }
 
 /**
- * @brief This is for when searching by Name <- Goes through the whole tree Left to Right As names arent in "FScoreboardData"
+ * @brief This is for when searching by Name <- Goes through the whole tree Left to Right As names arent in order
  * @param Node (Input Root of the Binary Tree)
  * @param SearchString
  * @return (Returns the Node that is linked to it. Has Struct "FScoreboardData" so links the Name and Score)

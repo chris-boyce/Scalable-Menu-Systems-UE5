@@ -22,7 +22,6 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "ScoreboardDataTable")
 	UDataTable* ScoreBoardDataTable;
 	
-
 	//Variable to Create the Scroll Box and the Template, Function to Insert them Called once Scroll Box is Assigned <- Blueprint Called in ScoreBoard Manager
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
 	UScrollBox* ScrollBox;
@@ -30,25 +29,24 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
 	TSubclassOf<UUserWidget> TemplateWidget;
 	
-	UFUNCTION(BlueprintCallable)
-	void CreateTemplate();
-	
-
-	//Overloaded Functions to Split the Int and the String Searches
-	void SearchBinaryTree(int SearchItem);
-	void SearchBinaryTree(FString SearchItem);
-	UFUNCTION()
-	void ResultHandler(UBinaryTreeNode* Result);
-
-	UFUNCTION(BlueprintCallable)
-	void InitSearch(FString SearchItem);
-
 	UPROPERTY(BlueprintReadOnly)
 	FScoreboardData OutputText;
 
 	UPROPERTY()
 	UBinaryTreeClass* ScoreBoardBinaryTree;
+	
+	UFUNCTION(BlueprintCallable)
+	void CreateTemplate();
+	
+	//Overloaded Functions to Split the Int and the String Searches
+	void SearchBinaryTree(int SearchItem);
+	void SearchBinaryTree(FString SearchItem);
+	
+	UFUNCTION()
+	void ResultHandler(UBinaryTreeNode* Result);
 
+	UFUNCTION(BlueprintCallable)
+	void InitSearch(FString SearchItem);
 
 protected:
 	virtual void BeginPlay() override;

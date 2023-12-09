@@ -25,7 +25,6 @@ void AScoreboardManager::CreateTemplate()
 			NewItem->ChangeText(Value.Name, Value.Score, i);
 			ScrollBox->AddChild(NewItem);
 		}
-		
 	}
 }
 
