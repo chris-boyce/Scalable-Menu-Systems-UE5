@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "BinaryTreeClass.h"
+#include "AdvanceCPlusPlus/BinaryTree/BinaryTreeClass.h"
 #include "Components/ScrollBox.h"
 #include "ScoreboardManager.generated.h"
 

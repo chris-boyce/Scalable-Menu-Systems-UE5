@@ -3,7 +3,7 @@
 
 #include "BattlePassManager.h"
 
-#include "BattlePassTemplate.h"
+#include "UI/BattlePassTemplate.h"
 #include "GunRender.h"
 #include "Blueprint/WidgetBlueprintLibrary.h"
 #include "Kismet/GameplayStatics.h"

@@ -14,6 +14,33 @@ UGunController::UGunController()
 }
 
 
+void UGunController::FireGun()
+{
+	FVector StartLocation;
+	FRotator PlayerViewpointRotation;
+	GetWorld()->GetFirstPlayerController()->GetPlayerViewPoint(StartLocation, PlayerViewpointRotation);
+	FVector EndLocation = StartLocation + PlayerViewpointRotation.Vector() * 10000;
+	
+	// Set up the parameters for the line trace
+	FCollisionQueryParams TraceParams(FName(TEXT("")), false, GetOwner());
+
+	// Perform the line trace
+	FHitResult HitResult;
+	bool bHit = GetWorld()->LineTraceSingleByChannel(HitResult, StartLocation, EndLocation, ECC_Visibility, TraceParams);
+
+	// Check if something was hit
+	if (bHit)
+	{
+		// Handle the hit, e.g., apply damage, spawn impact effects, etc.
+
+		// Example: Draw a debug line for visualization
+		DrawDebugLine(GetWorld(), StartLocation, HitResult.ImpactPoint, FColor::Red, false, 1.0f, 0, 1.0f);
+	}
+	else
+	{
+		// Handle no hit (optional)
+	}
+}
 
 void UGunController::BeginPlay()
 {
@@ -46,14 +73,8 @@ void UGunController::BeginPlay()
 		}
 	}
 	
-
-	
-		
-			
-		
-	
-	
 }
+
 
 
 // Called every frame

@@ -3,6 +3,8 @@
 
 #include "BP_GunScar.h"
 
+#include "Kismet/GameplayStatics.h"
+
 ABP_GunScar::ABP_GunScar()
 {
 	PrimaryActorTick.bCanEverTick = true;
@@ -12,8 +14,10 @@ ABP_GunScar::ABP_GunScar()
 void ABP_GunScar::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
+
+
+
 void ABP_GunScar::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);

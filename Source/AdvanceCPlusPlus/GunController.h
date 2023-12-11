@@ -21,6 +21,11 @@ public:
 	UStaticMeshComponent* GunMesh;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Save")
 	float Sense;
+
+	UFUNCTION(BlueprintCallable)
+	void FireGun();
+	
+	
 	
 
 protected:

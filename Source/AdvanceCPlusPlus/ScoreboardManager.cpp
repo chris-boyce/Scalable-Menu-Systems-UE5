@@ -1,7 +1,7 @@
 // Chris Boyce 1908671 - Advanced C++ Module 
 
 #include "ScoreboardManager.h"
-#include "LeagueTemplate.h"
+#include "UI/LeagueTemplate.h"
 
 AScoreboardManager::AScoreboardManager()
 {
