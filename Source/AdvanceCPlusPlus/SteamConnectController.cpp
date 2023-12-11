@@ -21,7 +21,6 @@ void ASteamConnectController::BeginPlay()
 		const char* playerName = SteamFriends()->GetFriendPersonaName(MyID);
 		FString steamName(playerName);
 		SteamName = steamName;
-		UE_LOG(LogTemp, Warning, TEXT("Player's Steam Name: %s"), *steamName);
 
 		int iconHandle = SteamFriends()->GetSmallFriendAvatar(MyID);
 		uint8* iconData = new uint8[4 * 32 * 32];

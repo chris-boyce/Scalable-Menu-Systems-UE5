@@ -61,12 +61,10 @@ void AScoreboardManager::InitSearch(FString SearchItem)
 	{
 		int temp = FCString::Atoi(*SearchItem);
 		SearchBinaryTree(temp);
-		UE_LOG(LogTemp, Warning, TEXT("Number"));
 	}
 	else
 	{
 		SearchBinaryTree(SearchItem);
-		UE_LOG(LogTemp, Warning, TEXT("String"));
 	}
 }
 

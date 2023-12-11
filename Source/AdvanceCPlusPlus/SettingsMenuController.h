@@ -31,16 +31,19 @@ public:
 
 	
 	
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UPROPERTY(EditInstanceOnly, BlueprintReadOnly)
 	UUserWidget* SettingMenuWidget;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UPROPERTY(EditInstanceOnly, BlueprintReadOnly)
 	UUserWidget* GameplayMenuWidget;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UPROPERTY(EditInstanceOnly, BlueprintReadOnly)
 	UUserWidget* GraphicsMenuWidget;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UPROPERTY(EditInstanceOnly, BlueprintReadOnly)
+	UUserWidget* AudioMenuWidget;
+	
+	UPROPERTY(EditInstanceOnly, BlueprintReadOnly)
 	UUserWidget* CrosshairMenuWidget;
 
 	UFUNCTION(BlueprintCallable)
