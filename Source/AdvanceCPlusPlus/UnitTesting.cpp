@@ -3,29 +3,294 @@
 
 #include "UnitTesting.h"
 
-
-void AUnitTesting::MyTestFunction()
-{
-	AssertTrue(1 == 1, TEXT("1 should be equal to 1"), this);
-}
+#include "LinkedListClass.h"
 
 void AUnitTesting::UT_BinaryTreeInsertData()
 {
-	AssertTrue(LocalSBM->ScoreBoardBinaryTree != nullptr, TEXT("Binary Tree is Filled"), this);
-	UE_LOG(LogTemp, Log, TEXT("This is a log message at Log level"));
+	UBinaryTreeClass* BinaryTree = NewObject<UBinaryTreeClass>();
+	
+	FScoreboardData Data1;
+	Data1.Name = "Player1";
+	Data1.Score = 100;
+
+	FScoreboardData Data2;
+	Data2.Name = "Player2";
+	Data2.Score = 50;
+
+	FScoreboardData Data3;
+	Data3.Name = "Player3";
+	Data3.Score = 75;
+
+	FScoreboardData Data4;
+	Data4.Name = "Player4";
+	Data4.Score = 120;
+
+	BinaryTree->Insert(Data1);
+	BinaryTree->Insert(Data2);
+	BinaryTree->Insert(Data3);
+	BinaryTree->Insert(Data4);
+
+	TArray<FScoreboardData> Result2;
+	BinaryTree->InOrderTraversal(BinaryTree->Root, Result2);
+	
+
+	bool check = true;
+	int size1 = sizeof(Result2) / sizeof(Result2[0]);
+	
+	for (int i = 0; i < size1; ++i)
+		{
+			if (Result2[i].Score == NULL)
+			{
+				check = false;
+			}
+	}
+
+	AssertTrue(check == true, TEXT("Insert Function Sucess"));
 }
 
 void AUnitTesting::UT_BinaryTreeInsertionOrder()
 {
-	TArray<FScoreboardData> InOrderResult;
-	LocalSBM->ScoreBoardBinaryTree->InOrderTraversal(LocalSBM->ScoreBoardBinaryTree->Root, InOrderResult );
-	AssertTrue(InOrderResult[0].Score < InOrderResult[99].Score, TEXT("Insertion Order is Small to Large"), this);
+	UBinaryTreeClass* BinaryTree = NewObject<UBinaryTreeClass>();
+	
+	FScoreboardData Data1;
+	Data1.Name = "Player1";
+	Data1.Score = 100;
+
+	FScoreboardData Data2;
+	Data2.Name = "Player2";
+	Data2.Score = 50;
+
+	FScoreboardData Data3;
+	Data3.Name = "Player3";
+	Data3.Score = 75;
+
+	BinaryTree->Insert(Data1);
+	BinaryTree->Insert(Data2);
+	BinaryTree->Insert(Data3);
+
+	TArray<FScoreboardData> Result2;
+	BinaryTree->InOrderTraversal(BinaryTree->Root, Result2);
+
+	TArray<FScoreboardData> ExpectedOrder;
+	ExpectedOrder.Add(Data2); // Smallest
+	ExpectedOrder.Add(Data3);
+	ExpectedOrder.Add(Data1); // Largest
+
+	int size1 = sizeof(Result2) / sizeof(Result2[0]);
+	int size2 = sizeof(ExpectedOrder) / sizeof(ExpectedOrder[0]);
+	bool check = true;
+	
+	for (int i = 0; i < size1; ++i) {
+		if (Result2[i].Score != ExpectedOrder[i].Score)
+		{
+			check = false;
+		}
+	}
+
+	AssertTrue(check == true, TEXT("InsertionOrder Success"));
 }
 
 void AUnitTesting::UT_BinarySearchFunction()
 {
-	UBinaryTreeNode* TestData = LocalSBM->ScoreBoardBinaryTree->BinarySearch(LocalSBM->ScoreBoardBinaryTree->Root, 24456);
-	AssertTrue(TestData->Value.Name == "Brayden", TEXT("Return Correct Name Through Binary Search"));
+	UBinaryTreeClass* BinaryTree = NewObject<UBinaryTreeClass>();
+	FScoreboardData Data1;
+	Data1.Name = "Player1";
+	Data1.Score = 100;
+
+	FScoreboardData Data2;
+	Data2.Name = "Player2";
+	Data2.Score = 50;
+
+	FScoreboardData Data3;
+	Data3.Name = "Player3";
+	Data3.Score = 75;
+
+	BinaryTree->Insert(Data1);
+	BinaryTree->Insert(Data2);
+	BinaryTree->Insert(Data3);
+
+	UBinaryTreeNode* SearchResult = BinaryTree->BinarySearch(BinaryTree->Root, 50);
+	AssertTrue(SearchResult->Value.Name == "Player2", TEXT("BinarySearch Sucessful"));
 }
+
+void AUnitTesting::UT_OrderSearchFunction()
+{
+	UBinaryTreeClass* BinaryTree = NewObject<UBinaryTreeClass>();
+	FScoreboardData Data1;
+	Data1.Name = "Player1";
+	Data1.Score = 100;
+
+	FScoreboardData Data2;
+	Data2.Name = "Player2";
+	Data2.Score = 50;
+
+	FScoreboardData Data3;
+	Data3.Name = "Player3";
+	Data3.Score = 75;
+
+	BinaryTree->Insert(Data1);
+	BinaryTree->Insert(Data2);
+	BinaryTree->Insert(Data3);
+
+	UBinaryTreeNode* SearchResult = BinaryTree->OrderedSearch(BinaryTree->Root, "Player2");
+	AssertTrue(SearchResult->Value.Score == 50, TEXT("OrderedSearchFuntion Sucessful"));
 	
+	
+}
+
+void AUnitTesting::UT_InOrderTraversal()
+{
+	UBinaryTreeClass* BinaryTree = NewObject<UBinaryTreeClass>();
+	
+	FScoreboardData Data1;
+	Data1.Name = "Player1";
+	Data1.Score = 100;
+
+	FScoreboardData Data2;
+	Data2.Name = "Player2";
+	Data2.Score = 50;
+
+	FScoreboardData Data3;
+	Data3.Name = "Player3";
+	Data3.Score = 75;
+
+	BinaryTree->Insert(Data1);
+	BinaryTree->Insert(Data2);
+	BinaryTree->Insert(Data3);
+
+	TArray<FScoreboardData> Result2;
+	BinaryTree->InOrderTraversal(BinaryTree->Root, Result2);
+
+	TArray<FScoreboardData> ExpectedOrder;
+	ExpectedOrder.Add(Data2); // Smallest
+	ExpectedOrder.Add(Data3);
+	ExpectedOrder.Add(Data1); // Largest
+
+	int size1 = sizeof(Result2) / sizeof(Result2[0]);
+	int size2 = sizeof(ExpectedOrder) / sizeof(ExpectedOrder[0]);
+	bool check = true;
+	
+	for (int i = 0; i < size1; ++i) {
+		if (Result2[i].Score != ExpectedOrder[i].Score)
+		{
+			check = false;
+		}
+	}
+
+	AssertTrue(check == true, TEXT("InOrderTraversal Success"));
+	
+}
+
+void AUnitTesting::UT_ReverseOrderTraversal()
+{
+	UBinaryTreeClass* BinaryTree = NewObject<UBinaryTreeClass>();
+	
+	FScoreboardData Data1;
+	Data1.Name = "Player1";
+	Data1.Score = 100;
+
+	FScoreboardData Data2;
+	Data2.Name = "Player2";
+	Data2.Score = 50;
+
+	FScoreboardData Data3;
+	Data3.Name = "Player3";
+	Data3.Score = 75;
+
+	FScoreboardData Data4;
+	Data4.Name = "Player4";
+	Data4.Score = 120;
+
+	BinaryTree->Insert(Data1);
+	BinaryTree->Insert(Data2);
+	BinaryTree->Insert(Data3);
+	BinaryTree->Insert(Data4);
+
+	TArray<FScoreboardData> Result2;
+	BinaryTree->ReverseOrderTraversal(BinaryTree->Root, Result2);
+
+	TArray<FScoreboardData> ExpectedOrder;
+	ExpectedOrder.Add(Data4); // Largest
+	ExpectedOrder.Add(Data1);
+	ExpectedOrder.Add(Data3);
+	ExpectedOrder.Add(Data2); // Smallest
+
+	int size1 = sizeof(Result2) / sizeof(Result2[0]);
+	int size2 = sizeof(ExpectedOrder) / sizeof(ExpectedOrder[0]);
+	bool check = true;
+	
+	for (int i = 0; i < size1; ++i) {
+		if (Result2[i].Score != ExpectedOrder[i].Score)
+		{
+			check = false;
+		}
+	}
+	AssertTrue(check == true, TEXT("ReverseOrderTraversal Success"));
+}
+
+void AUnitTesting::UT_LinkListAddNode()
+{
+	ULinkedListClass* MyList = NewObject<ULinkedListClass>();
+	FBattlePassDataStruct TestData;
+	TestData.Image = nullptr;
+	TestData.Name = "TD1";
+	TestData.Unlocked = true;
+	TestData.GunTexture = nullptr;
+		
+	MyList->AddNode(TestData);
+
+	AssertTrue(MyList->First  != nullptr, TEXT("Checked Not Null"));
+	AssertTrue(MyList->First->Data.Name == TestData.Name, TEXT("Add Node Sucess"));
+	
+}
+
+void AUnitTesting::UT_LinklistInsertStart()
+{
+	ULinkedListClass* MyList = NewObject<ULinkedListClass>();
+	FBattlePassDataStruct TestData;
+	TestData.Image = nullptr;
+	TestData.Name = "TD1";
+	TestData.Unlocked = true;
+	TestData.GunTexture = nullptr;
+
+	FBattlePassDataStruct TestData2;
+	TestData2.Image = nullptr;
+	TestData2.Name = "TD2";
+	TestData2.Unlocked = true;
+	TestData2.GunTexture = nullptr;
+		
+	MyList->AddNode(TestData);
+	MyList->InsertAtBeginning(TestData2);
+	
+	AssertTrue(MyList->First->Data.Name == TestData2.Name, TEXT("Insert At First Sucess"));
+}
+
+void AUnitTesting::UT_LinkListDelAtPos()
+{
+	ULinkedListClass* MyList = NewObject<ULinkedListClass>();
+	FBattlePassDataStruct TestData;
+	TestData.Image = nullptr;
+	TestData.Name = "TD1";
+	TestData.Unlocked = true;
+	TestData.GunTexture = nullptr;
+
+	FBattlePassDataStruct TestData2;
+	TestData2.Image = nullptr;
+	TestData2.Name = "TD2";
+	TestData2.Unlocked = true;
+	TestData2.GunTexture = nullptr;
+
+	FBattlePassDataStruct TestData3;
+	TestData3.Image = nullptr;
+	TestData3.Name = "TD3";
+	TestData3.Unlocked = true;
+	TestData3.GunTexture = nullptr;
+
+	MyList->AddNode(TestData);
+	MyList->AddNode(TestData2);
+	MyList->AddNode(TestData3);
+
+	MyList->DeleteAtPosition(2);
+	AssertTrue(MyList->First->Next->Next == nullptr, TEXT("Delete At Pos Correct"));
+}
 

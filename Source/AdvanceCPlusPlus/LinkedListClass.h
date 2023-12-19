@@ -38,5 +38,7 @@ public:
 	FNode* First;
 	ULinkedListClass() : First(nullptr) {}
 	void AddNode(FBattlePassDataStruct Data);
-	void PrintList();
+	void InsertAtBeginning(FBattlePassDataStruct Data);
+	void DeleteAtPosition(int Pos);
+	int GetPosition(FString Name);
 };

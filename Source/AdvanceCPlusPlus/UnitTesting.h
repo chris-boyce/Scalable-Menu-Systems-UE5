@@ -7,19 +7,11 @@
 #include "ScoreboardManager.h"
 #include "UnitTesting.generated.h"
 
-/**
- * 
- */
 UCLASS()
 class ADVANCECPLUSPLUS_API AUnitTesting : public AFunctionalTest
 {
 	GENERATED_BODY()
 	
-	UFUNCTION(BlueprintCallable)
-	void MyTestFunction();
-
-
-
 	UFUNCTION(BlueprintCallable)
 	void UT_BinaryTreeInsertData();
 
@@ -28,6 +20,24 @@ class ADVANCECPLUSPLUS_API AUnitTesting : public AFunctionalTest
 
 	UFUNCTION(BlueprintCallable)
 	void UT_BinarySearchFunction();
+
+	UFUNCTION(BlueprintCallable)
+	void UT_OrderSearchFunction();
+
+	UFUNCTION(BlueprintCallable)
+	void UT_InOrderTraversal();
+
+	UFUNCTION(BlueprintCallable)
+	void UT_ReverseOrderTraversal();
+	
+	UFUNCTION(BlueprintCallable)
+	void UT_LinkListAddNode();
+
+	UFUNCTION(BlueprintCallable)
+	void UT_LinklistInsertStart();
+
+	UFUNCTION(BlueprintCallable)
+	void UT_LinkListDelAtPos();
 
 public:
 	UPROPERTY(BlueprintReadWrite)

@@ -3,6 +3,8 @@
 
 #include "Target.h"
 
+#include "TargetRangePlayerState.h"
+
 // Sets default values
 ATarget::ATarget()
 {
@@ -29,6 +31,11 @@ void ATarget::ApplyDamage_Implementation(float DamageAmount)
 {
 	IIDamageable::ApplyDamage_Implementation(DamageAmount);
 	UE_LOG(LogTemp, Warning, TEXT("%s took %f damage!"), *GetName(), DamageAmount);
+	ATargetRangePlayerState* MyPlayerState = static_cast<ATargetRangePlayerState*>(GetWorld()->GetFirstPlayerController()->PlayerState);
+	if(MyPlayerState)
+	{
+		MyPlayerState->RangeScore += 1000;
+	}
 	Destroy();
 }
 
