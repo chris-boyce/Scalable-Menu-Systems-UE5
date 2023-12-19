@@ -294,3 +294,32 @@ void AUnitTesting::UT_LinkListDelAtPos()
 	AssertTrue(MyList->First->Next->Next == nullptr, TEXT("Delete At Pos Correct"));
 }
 
+void AUnitTesting::UT_GetPos()
+{
+	ULinkedListClass* MyList = NewObject<ULinkedListClass>();
+	FBattlePassDataStruct TestData;
+	TestData.Image = nullptr;
+	TestData.Name = "TD1";
+	TestData.Unlocked = true;
+	TestData.GunTexture = nullptr;
+
+	FBattlePassDataStruct TestData2;
+	TestData2.Image = nullptr;
+	TestData2.Name = "TD2";
+	TestData2.Unlocked = true;
+	TestData2.GunTexture = nullptr;
+
+	FBattlePassDataStruct TestData3;
+	TestData3.Image = nullptr;
+	TestData3.Name = "TD3";
+	TestData3.Unlocked = true;
+	TestData3.GunTexture = nullptr;
+
+	MyList->AddNode(TestData);
+	MyList->AddNode(TestData2);
+	MyList->AddNode(TestData3);
+	
+	int32 PositionNode2 = MyList->GetPosition(TEXT("TD2"));
+	AssertTrue(PositionNode2 == 1, TEXT("Find Pos Success"));
+}
+

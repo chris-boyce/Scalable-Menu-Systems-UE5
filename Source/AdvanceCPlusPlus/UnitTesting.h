@@ -39,6 +39,9 @@ class ADVANCECPLUSPLUS_API AUnitTesting : public AFunctionalTest
 	UFUNCTION(BlueprintCallable)
 	void UT_LinkListDelAtPos();
 
+	UFUNCTION(BlueprintCallable)
+	void UT_GetPos();
+
 public:
 	UPROPERTY(BlueprintReadWrite)
 	AScoreboardManager* LocalSBM;
