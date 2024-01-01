@@ -323,3 +323,35 @@ void AUnitTesting::UT_GetPos()
 	AssertTrue(PositionNode2 == 1, TEXT("Find Pos Success"));
 }
 
+void AUnitTesting::UT_StackPush()
+{
+	StackClass<int> IntStack;
+	IntStack.Push(10);
+	AssertTrue(IntStack.Peek() == 10 ,TEXT("Push Onto the Stack"));
+}
+
+void AUnitTesting::UT_StackPop()
+{
+	StackClass<int> IntStack;
+	IntStack.Push(10);
+	IntStack.Pop();
+	AssertTrue(IntStack.Peek() == NULL ,TEXT("Pop Operation Sucessful"));
+}
+
+void AUnitTesting::UT_StackIsEmpty()
+{
+	StackClass<int> IntStack;
+	IntStack.Push(10);
+	AssertTrue(IntStack.IsEmpty() == false ,TEXT("Stack Not Empty"));
+	IntStack.Pop();
+	AssertTrue(IntStack.IsEmpty() == true ,TEXT("Stack is Empty"));
+}
+
+void AUnitTesting::UT_StackPeek()
+{
+	StackClass<int> IntStack;
+	IntStack.Push(10);
+	auto Answer = IntStack.Peek();
+	AssertTrue(Answer == 10 ,TEXT("Peek Operation Successful"));
+}
+

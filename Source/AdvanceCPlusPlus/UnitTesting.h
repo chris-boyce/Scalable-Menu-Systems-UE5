@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "FunctionalTest.h"
 #include "ScoreboardManager.h"
+#include "StackClass.h"
 #include "UnitTesting.generated.h"
 
 UCLASS()
@@ -41,6 +42,20 @@ class ADVANCECPLUSPLUS_API AUnitTesting : public AFunctionalTest
 
 	UFUNCTION(BlueprintCallable)
 	void UT_GetPos();
+
+	UFUNCTION(BlueprintCallable)
+	void UT_StackPush();
+
+	UFUNCTION(BlueprintCallable)
+	void UT_StackPop();
+
+	UFUNCTION(BlueprintCallable)
+	void UT_StackIsEmpty();
+
+	UFUNCTION(BlueprintCallable)
+	void UT_StackPeek();
+
+	
 
 public:
 	UPROPERTY(BlueprintReadWrite)

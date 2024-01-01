@@ -58,7 +58,7 @@ T StackClass<T>::Peek() const
 		return TopElement;
 	}
 	
-	return nullptr;
+	return T();
 }
 
 

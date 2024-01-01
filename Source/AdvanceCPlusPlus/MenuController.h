@@ -5,7 +5,6 @@
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
 #include "MenuController.generated.h"
-
 UCLASS()
 class ADVANCECPLUSPLUS_API AMenuController : public APlayerController
 {
