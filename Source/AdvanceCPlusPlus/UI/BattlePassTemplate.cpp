@@ -14,8 +14,6 @@ void UBattlePassTemplate::ChangeItems(FString Name, UTexture2D* Item, bool Unloc
 
 void UBattlePassTemplate::RemoveTemplate()
 {
-	
-	
 	RemoveFromParent();
 	ConditionalBeginDestroy();
 }
