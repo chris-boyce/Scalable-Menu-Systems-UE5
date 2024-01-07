@@ -5,7 +5,6 @@
 #include "CoreMinimal.h"
 
 /**
- * @brief (IDK WHY THIS MUST BE THE HEADER IF NOT ITS VERY BROKEN) Something to do with linker Errors and Templates
  * @tparam T Is the Type the stack Class Type
  */
 template <typename T>

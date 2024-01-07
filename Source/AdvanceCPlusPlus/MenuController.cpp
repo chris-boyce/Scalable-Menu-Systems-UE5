@@ -19,7 +19,7 @@ void AMenuController::ShowWidget()
 	{
 		if (!MainMenuWidgetClass)
 		{
-			UE_LOG(LogTemp, Error, TEXT("We Are broken"));
+			UE_LOG(LogTemp, Error, TEXT("Failed Menu Load"));
 		}
 		APlayerController* PlayerController = UGameplayStatics::GetPlayerController(GetWorld(), 0);
 		FInputModeUIOnly InputModeData;
